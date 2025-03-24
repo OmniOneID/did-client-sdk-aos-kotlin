@@ -30,7 +30,7 @@ jobs:
     - name: Run Instrumentation Tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
-        api-level: 33
+        api-level: 34
         arch: x86_64
         profile: pixel_6
         working-directory: source/did-client-sdk-aos
