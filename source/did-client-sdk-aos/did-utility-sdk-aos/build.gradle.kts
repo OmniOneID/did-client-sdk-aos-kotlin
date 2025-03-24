@@ -48,6 +48,7 @@ dependencies {
     implementation("com.madgag.spongycastle:pkix:1.54.0.0")
     implementation("com.madgag.spongycastle:pg:1.54.0.0")
     testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }

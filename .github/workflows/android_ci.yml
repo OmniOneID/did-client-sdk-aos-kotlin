@@ -27,6 +27,9 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
 
+    - name: Clean project
+      run: ./gradlew clean
+
     - name: Run Instrumentation Tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
