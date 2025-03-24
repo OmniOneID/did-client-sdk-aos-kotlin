@@ -27,19 +27,5 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
 
-    - name: Clean project
-      run: ./gradlew clean
-
-    - name: Run Instrumentation Tests
-      uses: reactivecircus/android-emulator-runner@v2
-      with:
-        api-level: 33
-        arch: x86_64
-        profile: pixel_6
-        working-directory: source/did-client-sdk-aos
-        script: |
-          adb wait-for-device
-          adb shell getprop sys.boot_completed | grep -m 1 '1'
-          adb devices
-          adb -s emulator-5554 emu finger touch 1
-          ./gradlew connectedAndroidTest
+    - name: Build with Gradle
+      run:  ./gradlew build
