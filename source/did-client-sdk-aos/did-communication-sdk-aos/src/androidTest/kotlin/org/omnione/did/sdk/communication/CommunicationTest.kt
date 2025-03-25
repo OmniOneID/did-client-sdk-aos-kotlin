@@ -15,14 +15,10 @@ import org.omnione.did.sdk.communication.urlconnection.HttpUrlConnectionTask
  */
 @RunWith(AndroidJUnit4::class)
 class CommunicationTest {
-    /* The local test succeeds, but the github action fails because the test url is not found, so it is commented out.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         @Test
         fun useAppContext() {
         // Context of the app under test.
-
-
-
         //get request
         val getUrl = "https://httpbin.org/get"
         val getMethod = "GET"
@@ -39,5 +35,4 @@ class CommunicationTest {
         Log.d("CommunicationTest", "POST response : " + httpFunc.makeHttpRequest(postUrl, postMethod, postRequest))
 
     }
-     */
 }
