@@ -1,0 +1,98 @@
+name: Build and Upload JAR to GitHub Releases
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
+permissions:
+  contents: write
+jobs:
+  build:
+    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'release/QA-')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Build JAR
+        run: |
+          cd source/did-client-sdk-aos
+          ./gradlew assemble
+          echo "JAR file generated at:"
+          find . -name "classes.jar"     
+      - name: Set release title
+        id: set_release_title
+        run: |
+          # 'release/QA-'
+          release_tag=${GITHUB_HEAD_REF#release/QA-}
+          echo "Release tag: $release_tag"
+          echo "::set-output name=release_tag::$release_tag"
+      - name: Get commit messages
+        id: get_commit_messages
+        run: |
+          # main
+          commits=$(git log ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }} --pretty=format:"* %s")
+          echo "$commits" > commit_messages.txt
+          echo "::set-output name=commits::$commits"
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with: 
+          tag_name: ${{ steps.set_release_title.outputs.release_tag }}
+          release_name: ${{ steps.set_release_title.outputs.release_tag }}
+          body: |
+            ## Changes:
+            ${{ steps.get_commit_messages.outputs.commits }}
+      - name: Upload JAR from did-datamodel-sdk-aos
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: source/did-client-sdk-aos/did-datamodel-sdk-aos/build/intermediates/aar_main_jar/release/classes.jar
+          asset_name: did-datamodel-sdk-aos-${{ steps.set_release_title.outputs.release_tag }}.jar
+          asset_content_type: application/java-archive
+      - name: Upload JAR from did-core-sdk-aos
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: source/did-client-sdk-aos/did-core-sdk-aos/build/intermediates/aar_main_jar/release/classes.jar
+          asset_name: did-core-sdk-aos-${{ steps.set_release_title.outputs.release_tag }}.jar
+          asset_content_type: application/java-archive
+      - name: Upload JAR from did-utility-sdk-aos
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: source/did-client-sdk-aos/did-utility-sdk-aos/build/intermediates/aar_main_jar/release/classes.jar
+          asset_name: did-utility-sdk-aos-${{ steps.set_release_title.outputs.release_tag }}.jar
+          asset_content_type: application/java-archive
+      - name: Upload JAR from did-communication-sdk-aos
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: source/did-client-sdk-aos/did-communication-sdk-aos/build/intermediates/aar_main_jar/release/classes.jar
+          asset_name: did-communication-sdk-aos-${{ steps.set_release_title.outputs.release_tag }}.jar
+          asset_content_type: application/java-archive
+      - name: Upload JAR from did-wallet-sdk-aos
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: source/did-client-sdk-aos/did-wallet-sdk-aos/build/intermediates/aar_main_jar/release/classes.jar
+          asset_name: did-wallet-sdk-aos-${{ steps.set_release_title.outputs.release_tag }}.jar
+          asset_content_type: application/java-archive    

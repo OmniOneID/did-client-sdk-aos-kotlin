@@ -1,10 +1,9 @@
 Android Client SDK
 ==
 
-Welcome to the Client SDK Repository. <br>
-This repository provides an SDK for developing an Android mobile wallet.
+Client SDK Repository에 오신 것을 환영합니다. <br> 이 Repository는 안드로이드 모바일 월렛을 개발하기 위한 SDK를 제공합니다.
 
-## Folder Structure
+## 폴더 구조
 ```
 did-client-sdk-aos
 ├── CLA.md
@@ -96,31 +95,32 @@ did-client-sdk-aos
         └── settings.gradle.kts
 ```
 
-| Name                    | Description                                     |
-| ----------------------- | ----------------------------------------------- |
-| source                  | SDK source code project                         |
-| docs                    | Documentation                                   |
-| ┖ api                   | API guide documentation                         |
-| ┖ design                | Design documentation                            |
-| sample                  | Samples and data                                |
-| README.md               | Overview and description of the project         |
-| CLA.md                  | Contributor License Agreement                   |
-| CHANGELOG.md            | Version-specific changes in the project         |
-| CODE_OF_CONDUCT.md      | Code of conduct for contributors                |
-| CONTRIBUTING.md         | Contribution guidelines and procedures          |
+|  이름 |         역할                    |
+| ------- | ------------------------------------ |
+| source  |  SDK 소스코드 프로젝트             |
+| docs  |   문서            |
+| ┖ api  |  API 가이드 문서          |
+| ┖ design |  설계 문서            |
+| sample  |  샘플 및 데이터            |
+| README.md  |  프로젝트의 전체적인 개요 설명            |
+| CLA.md             | Contributor License Agreement                |
+| CHANGELOG.md| 프로젝트 버전별 변경사항           |
+| CODE_OF_CONDUCT.md| 기여자의 행동강령            |
+| CONTRIBUTING.md| 기여 절차 및 방법           |
 | LICENSE                 | Apache 2.0                                      |
-| dependencies-license.md | Licenses for the project’s dependency libraries |
-| MAINTAINERS.md          | General guidelines for maintaining              |
-| RELEASE-PROCESS.md      | Release process                                 |
-| SECURITY.md             | Security policies and vulnerability reporting   |
+| dependencies-license.md| 프로젝트 의존성 라이브러리에 대한 라이선스            |
+| MAINTAINERS.md          | 유지관리 가이드              |
+| RELEASE-PROCESS.md      | 릴리즈 절차                                |
+| SECURITY.md| 보안취약점 보고 및 보안정책            | 
 
-## Libraries
+## 라이브러리
 
-Libraries can be found in the [releases folder](source/did-client-sdk-aos/release).
+라이브러리는 [release 폴더](source/did-client-sdk-aos/release)에서 찾을 수 있습니다.
 
 ### Core SDK
-1. Copy the `did-core-sdk-aos-1.0.0.jar`, `did-utility-sdk-aos-1.0.0.jar`, `did-datamodel-sdk-aos-1.0.0.jar` file to the libs of the app project.
-2. Add the following dependencies to the build.gradle of the app project.
+
+1. 앱 프로젝트의 libs에 `did-core-sdk-aos-1.0.0.jar`, `did-utility-sdk-aos-1.0.0.jar`, `did-datamodel-sdk-aos-1.0.0.jar` 파일을 복사한다.
+2. 앱 프로젝트의 build gradle에 아래 의존성을 추가한다.
 
 ```groovy
     implementation files('libs/did-core-sdk-aos-1.0.0.jar')
@@ -134,13 +134,12 @@ Libraries can be found in the [releases folder](source/did-client-sdk-aos/releas
     implementation 'com.madgag.spongycastle:pkix:1.54.0.0'
     implementation 'com.madgag.spongycastle:pg:1.54.0.0'
 ```
-3. Sync `Gradle` to ensure the dependencies are properly added.
-
+3. `Gradle`을 동기화하여 의존성이 제대로 추가되었는지 확인한다.
 
 ### Utility SDK
 
-1. Copy the `opendid-utility-sdk-aos-1.0.0.jar` file to the `libs` directory of your app project.
-2. Add the following dependencies to the build.gradle file of your app project.
+1. 앱 프로젝트의 libs에 `did-utility-sdk-aos-1.0.0.jar` 파일을 복사한다.
+2. 앱 프로젝트의 build gradle에 아래 의존성을 추가한다.
 
 ```groovy
     implementation files('libs/did-utility-sdk-aos-1.0.0.jar')
@@ -152,24 +151,24 @@ Libraries can be found in the [releases folder](source/did-client-sdk-aos/releas
     implementation 'com.madgag.spongycastle:pkix:1.54.0.0'
     implementation 'com.madgag.spongycastle:pg:1.54.0.0'
 ```
+3. `Gradle`을 동기화하여 의존성이 제대로 추가되었는지 확인한다.
 
-3. Synchronize `Gradle` to ensure that dependencies have been added correctly.
 
 ### DataModel
-1. Copy the `opendid-datamodel-sdk-aos-1.0.0.jar` file to the libs directory of the app project.
-2. Add the following dependencies to the build.gradle of the app project.
+
+1. 앱 프로젝트의 libs에 `did-datamodel-sdk-aos-1.0.0.jar` 파일을 복사한다.
+2. 앱 프로젝트의 build gradle에 아래 의존성을 추가한다.
 
 ```groovy
     implementation files('libs/did-datamodel-sdk-aos-1.0.0.jar')
     implementation 'com.google.code.gson:gson:2.10.1'
 ```
-3. Sync `Gradle` to ensure the dependencies are properly added.
-
+3. `Gradle`을 동기화하여 의존성이 제대로 추가되었는지 확인한다.
 
 ### Wallet SDK
 
-1. Copy the `did-core-sdk-aos-1.0.0.jar`, `did-utility-sdk-aos-1.0.0.jar`, `did-datamodel-sdk-aos-1.0.0.jar`, `did-wallet-sdk-aos-1.0.0.jar`, `did-communication-sdk-aos-1.0.0.jar` file to the libs of the app project.
-2. Add the following dependencies to the build.gradle of the app project.
+1. 앱 프로젝트의 libs에 `did-core-sdk-aos-1.0.0.jar`, `did-utility-sdk-aos-1.0.0.jar`, `did-datamodel-sdk-aos-1.0.0.jar`, `did-wallet-sdk-aos-1.0.0.jar`, `did-communication-sdk-aos-1.0.0.jar` 파일을 복사한다.
+2. 앱 프로젝트의 build gradle에 아래 의존성을 추가한다.
 
 ```groovy
     implementation files('libs/did-wallet-sdk-aos-1.0.0.jar')
@@ -181,33 +180,32 @@ Libraries can be found in the [releases folder](source/did-client-sdk-aos/releas
     annotationProcessor "androidx.room:room-compiler:2.6.1"
     implementation 'androidx.biometric:biometric:1.1.0'
 ```
-3. Sync `Gradle` to ensure the dependencies are properly added.
+3. `Gradle`을 동기화하여 의존성이 제대로 추가되었는지 확인한다.
 
 
 ### Communication SDK
 
-1. Copy the `did-communication-sdk-aos-1.0.0.jar` file to the libs of the app project.
-2. Add the following dependencies to the build.gradle of the app project.
+1. 앱 프로젝트의 libs에 `did-communication-sdk-aos-1.0.0.jar` 파일을 복사한다.
+2. 앱 프로젝트의 build gradle에 아래 의존성을 추가한다.
 
 ```groovy
     implementation files('libs/did-communication-sdk-aos-1.0.0.jar')
 ```
-3. Sync `Gradle` to ensure the dependencies are properly added.
+3. `Gradle`을 동기화하여 의존성이 제대로 추가되었는지 확인한다.
 
+## API 참조
 
-## API Reference
-
-API Reference can be found : 
+API 참조는 아래에서 확인할 수 있습니다.
 <br>
-- [Core SDK](source/did-client-sdk-aos/did-core-sdk-aos/README.md)  
-- [Utility SDK](source/did-client-sdk-aos/did-utility-sdk-aos/README.md)  
-- [DataModel SDK](source/did-client-sdk-aos/did-datamodel-sdk-aos/README.md)  
-- [Wallet SDK](source/did-client-sdk-aos/did-wallet-sdk-aos/README.md)  
-- [Communication SDK](source/did-client-sdk-aos/did-communication-sdk-aos/README.md)  
+- [Core SDK](source/did-client-sdk-aos/did-core-sdk-aos/README_ko.md)  
+- [Utility SDK](source/did-client-sdk-aos/did-utility-sdk-aos/README_ko.md)  
+- [DataModel SDK](source/did-client-sdk-aos/did-datamodel-sdk-aos/README_ko.md)  
+- [Wallet SDK](source/did-client-sdk-aos/did-wallet-sdk-aos/README_ko.md)  
+- [Communication SDK](source/did-client-sdk-aos/did-communication-sdk-aos/README_ko.md)  
 
-## Change Log
+## 수정내역
 
-ChangeLog can be found : 
+ChangeLog는 아래에서 확인할 수 있습니다.
 <br>
 - [Core SDK](source/did-client-sdk-aos/did-core-sdk-aos/CHANGELOG.md)  
 - [Utility SDK](source/did-client-sdk-aos/did-utility-sdk-aos/CHANGELOG.md)  
@@ -215,15 +213,14 @@ ChangeLog can be found :
 - [Wallet SDK](source/did-client-sdk-aos/did-wallet-sdk-aos/CHANGELOG.md)  
 - [Communication SDK](source/did-client-sdk-aos/did-communication-sdk-aos/CHANGELOG.md)  
 
-## OpenDID Demonstration Videos <br>
-To watch our demonstration videos of the OpenDID system in action, please visit our [Demo Repository](https://github.com/OmniOneID/did-demo-server). <br>
+## 데모 영상 <br>
+OpenDID 시스템의 실제 동작을 보여주는 데모 영상은 [Demo Repository](https://github.com/OmniOneID/did-demo-server)에서 확인하실 수 있습니다. <br>
+사용자 등록, VC 발급, VP 제출 등 주요 기능들을 영상으로 확인하실 수 있습니다.
 
-These videos showcase key features including user registration, VC issuance, and VP submission processes.
+## 기여
 
-## Contributing
+Contributing 및 pull request 제출 절차에 대한 자세한 내용은 [CONTRIBUTING.md](CONTRIBUTING.md)와 [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) 를 참조하세요.
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for details on our code of conduct, and the process for submitting pull requests to us.
-
-
-## License
+## 라이선스
 [Apache 2.0](LICENSE)
+
