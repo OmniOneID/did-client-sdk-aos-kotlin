@@ -7,7 +7,7 @@ Open DID에 필요한 Key, DID Document(DID 문서), Verifiable Credential(이�
 | 구분 | 내용                |
 |------|----------------------------|
 | OS  | Android 13|
-| Language  | Java 17, Kotlin 1.9.22|
+| Language  | Java 17 through 21, Kotlin 1.9.22|
 | IDE  | Android Studio 4|
 | Build System  | Gradle 8.2 |
 | Compatibility | Android API level 34 or higher  |
