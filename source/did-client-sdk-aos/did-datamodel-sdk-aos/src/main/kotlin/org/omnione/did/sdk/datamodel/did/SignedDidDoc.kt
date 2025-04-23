@@ -60,7 +60,7 @@ data class SignedDidDoc(
         return _proofs
     }
 
-    override fun setProofs(proofs: List<Proof>) {
+    override fun setProofs(proofs: List<Proof>?) {
         this._proofs = proofs
     }
     override fun toJson(): String {

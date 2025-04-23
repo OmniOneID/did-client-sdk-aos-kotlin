@@ -24,7 +24,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
-        freeCompilerArgs += "-Xjvm-default=all"
     }
 }
 

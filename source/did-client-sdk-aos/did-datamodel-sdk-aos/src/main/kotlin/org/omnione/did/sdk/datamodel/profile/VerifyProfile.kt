@@ -108,7 +108,7 @@ data class VerifyProfile(
         return _proofs
     }
 
-    override fun setProofs(proofs: List<Proof>) {
+    override fun setProofs(proofs: List<Proof>?) {
         this._proofs = proofs
     }
 

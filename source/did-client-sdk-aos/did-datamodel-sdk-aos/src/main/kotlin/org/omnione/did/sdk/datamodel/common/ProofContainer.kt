@@ -16,11 +16,12 @@
 
 package org.omnione.did.sdk.datamodel.common;
 
-@JvmDefaultWithCompatibility
 interface ProofContainer {
     fun getProof(): Proof?
     fun setProof(proof: Proof?)
     fun getProofs(): List<Proof>?
-    fun setProofs(proofs: List<Proof>) {}
+    @JvmSuppressWildcards
+    fun setProofs(proofs: List<Proof>?) {}
     fun toJson(): String
+    fun fromJson(value: String) {}
 }
