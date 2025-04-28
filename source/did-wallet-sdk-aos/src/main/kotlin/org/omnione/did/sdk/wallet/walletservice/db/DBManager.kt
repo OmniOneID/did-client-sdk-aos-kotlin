@@ -25,7 +25,7 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import kotlin.concurrent.Volatile
 
-@Database(entities = [Token::class, CaPkg::class, User::class], version = 1)
+@Database(entities = [Token::class, CaPkg::class, User::class], version = 1, exportSchema = false)
 abstract class DBManager : RoomDatabase() {
     abstract fun tokenDao(): TokenDao?
     abstract fun caPkgDao(): CaPkgDao?

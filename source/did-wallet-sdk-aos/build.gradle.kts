@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library") version "8.2.1"
     id("org.jetbrains.kotlin.android") version "1.9.22"
+    kotlin("kapt") version "1.9.20"
 }
 
 android {
@@ -59,8 +60,9 @@ dependencies {
 
     // Room
     api("androidx.room:room-runtime:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
     api("androidx.room:room-ktx:2.6.1")
-//    kapt("androidx.room:room-compiler:2.6.1")
+
 
     // Test
     testImplementation("junit:junit:4.13.2")
