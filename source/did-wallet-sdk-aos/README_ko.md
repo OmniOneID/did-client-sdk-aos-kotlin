@@ -33,15 +33,11 @@ tasks.register<Copy>("exportJar") {
 <br>
 
 ## SDK 적용 방법
-1. 앱 프로젝트의 libs에 `did-core-sdk-aos-1.0.0.jar`, `did-utility-sdk-aos-1.0.0.jar`, `did-datamodel-sdk-aos-1.0.0.jar`, `did-wallet-sdk-aos-1.0.0.jar`, `did-communication-sdk-aos-1.0.0.jar` 파일을 복사한다.
+1. 앱 프로젝트의 libs에 `did-wallet-sdk-aos-1.0.0.jar` 파일을 복사한다.
 2. 앱 프로젝트의 build gradle에 아래 의존성을 추가한다.
 
 ```groovy
     implementation files('libs/did-wallet-sdk-aos-1.0.0.jar')
-    implementation files('libs/did-core-sdk-aos-1.0.0.jar')
-    implementation files('libs/did-utility-sdk-aos-1.0.0.jar')
-    implementation files('libs/did-datamodel-sdk-aos-1.0.0.jar')
-    implementation files('libs/did-communication-sdk-aos-1.0.0.jar')
     api "androidx.room:room-runtime:2.6.1"
     annotationProcessor "androidx.room:room-compiler:2.6.1"
     implementation 'androidx.biometric:biometric:1.1.0'
