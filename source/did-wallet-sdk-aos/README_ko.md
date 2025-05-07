@@ -18,7 +18,7 @@ Open DID에 필요한 WalletToken, Lock/Unlock, Key, DID Document(DID 문서), V
 : 본 SDK 프로젝트의 build.gradle 파일에서 export JAR 태스크를 실행하여 JAR 파일을 생성한다.
 1. 프로젝트의 `build.gradle.kts` 파일을 열고, 아래와 같은 `export JAR` 태스크를 추가한다.
 ```kotlin
-val customVersionMajorMinorBuild = "1.0.0"
+val customVersionMajorMinorBuild = "1.1.0"
 
 tasks.register<Copy>("exportJar") {
     from("build/intermediates/runtime_library_classes_jar/debug/classes.jar")
@@ -28,7 +28,7 @@ tasks.register<Copy>("exportJar") {
 }
 ```
 2. Android Studio에서 `Gradle` 창을 열고, 프로젝트의 `Tasks > other > exportJar` 태스크를 실행한다.
-3. 실행이 완료되면 `release/` 폴더에 `did-wallet-sdk-aos-1.0.0.jar` 파일을 생성한다.
+3. 실행이 완료되면 `release/` 폴더에 `did-wallet-sdk-aos-1.10.0.jar` 파일을 생성한다.
 
 <br>
 
@@ -37,7 +37,7 @@ tasks.register<Copy>("exportJar") {
 2. 앱 프로젝트의 build gradle에 아래 의존성을 추가한다.
 
 ```groovy
-    implementation files('libs/did-wallet-sdk-aos-1.0.0.jar')
+    implementation files('libs/did-wallet-sdk-aos-1.1.0.jar')
     api "androidx.room:room-runtime:2.6.1"
     annotationProcessor "androidx.room:room-compiler:2.6.1"
     implementation 'androidx.biometric:biometric:1.1.0'
@@ -49,5 +49,5 @@ tasks.register<Copy>("exportJar") {
 ## API 규격서
 | 구분 | API 문서 Link |
 |------|----------------------------|
-| WalletAPI  | [Wallet SDK API](../../../docs/api/did-wallet-sdk-aos/WalletAPI_ko.md) |
-| ErrorCode      | [Error Code](../../../docs/api/did-wallet-sdk-aos/WalletError.md) |
+| WalletAPI  | [Wallet SDK API](../../../docs/api/did-wallet-aos/WalletAPI_ko.md) |
+| ErrorCode      | [Error Code](../../../docs/api/did-wallet-aos/WalletError.md) |

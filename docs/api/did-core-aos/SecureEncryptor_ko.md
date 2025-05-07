@@ -15,7 +15,7 @@ puppeteer:
         fullPage: false
 ---
 
-Android SecureEncryptor Core SDK API
+Android SecureEncryptor Core API
 ==
 
 - 주제: SecureEncryptor

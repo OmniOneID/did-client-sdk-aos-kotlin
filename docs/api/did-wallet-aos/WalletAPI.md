@@ -15,7 +15,7 @@ puppeteer:
         fullPage: false
 ---
 
-Android Wallet SDK API
+Android Wallet API
 ==
 
 - Subject: WalletAPI
@@ -25,13 +25,13 @@ Android Wallet SDK API
 
 | Version | Date       | History                 |
 | ------- | ---------- | ------------------------|
-| v1.0.0  | 2025-03-18 | 초기 작성                 |
+| v1.0.0  | 2025-03-18 | Initial creation        |
 
 
 <div style="page-break-after: always;"></div>
 
-# 목차
-- [APIs](#api-목록)
+# Table of Contents
+- [APIs](#api-list)
     - [0. constructor](#0-constructor)
     - [1. isExistWallet](#1-isexistwallet)
     - [2. createWallet](#2-createwallet)
@@ -72,11 +72,11 @@ Android Wallet SDK API
     - [4. SignedDIDDoc](#4-signeddiddoc)
     - [5. SignedWalletInfo](#5-signedwalletinfo)
     - [6. DIDAuth](#6-didauth)
-# API 목록
+# API List
 ## 0. constructor
 
 ### Description
- `WalletApi 생성자`
+ `WalletApi constructor`
 
 ### Declaration
 
@@ -109,7 +109,7 @@ WalletApi walletApi = WalletApi.getInstatnce(context)
 ## 1. isExistWallet
 
 ### Description
- `DeviceKey Wallet 존재 유무를 확인한다.`
+ `Checks if DeviceKey Wallet exists.`
 
 ### Declaration
 
@@ -125,7 +125,7 @@ N/A
 
 | Type    | Description                | **M/O** | **Note** |
 |---------|---------------------|---------|----------|
-| Boolean | Wallet의 존재 여부를 반환한다. | M       |          |
+| Boolean | Returns whether the wallet exists. | M       |          |
 
 ### Usage
 
@@ -138,7 +138,7 @@ boolean exists = walletApi.isExistWallet();
 ## 2. createWallet
 
 ### Description
-`DeviceKey Wallet을 생성한다.`
+`Creates a DeviceKey Wallet.`
 
 ### Declaration
 
@@ -159,7 +159,7 @@ fun createWallet(walletUrl: String, tasUrl: String): Boolean
 
 | Type    | Description                | **M/O** | **Note** |
 |---------|---------------------|---------|----------|
-| Boolean | Wallet 생성 성공 여부를 반환한다. | M       |          |
+| Boolean | Returns whether wallet creation was successful. | M       |          |
 
 ### Usage
 
@@ -172,7 +172,7 @@ boolean success = walletApi.createWallet();
 ## 3. deleteWallet
 
 ### Description
-`DeviceKey Wallet을 삭제한다.`
+`Deletes the DeviceKey Wallet.`
 
 ### Declaration
 
@@ -200,7 +200,7 @@ walletApi.deleteWallet();
 ## 4. createWalletTokenSeed
 
 ### Description
-`월렛 토큰 시드를 생성한다.`
+`Creates a wallet token seed.`
 
 ### Declaration
 
@@ -213,15 +213,15 @@ fun createWalletTokenSeed(purpose: WALLET_TOKEN_PURPOSE, pkgName: String, userId
 
 | Name      | Type   | Description                             | **M/O** | **Note** |
 |-----------|--------|----------------------------------|---------|----------|
-| purpose   | WALLET_TOKEN_PURPOSE |token 사용 목적                       | M       |[WALLET_TOKEN_PURPOSE](#1-wallet_token_purpose)         |
-| pkgName   | String | 인가앱 Package Name                       | M       |          |
-| userId    | String | 사용자 ID                        | M       |          |
+| purpose   | WALLET_TOKEN_PURPOSE | Token usage purpose | M       |[WALLET_TOKEN_PURPOSE](#1-wallet_token_purpose)         |
+| pkgName   | String | Authorized app Package Name | M       |          |
+| userId    | String | User ID | M       |          |
 
 ### Returns
 
 | Type            | Description                  | **M/O** | **Note** |
 |-----------------|-----------------------|---------|----------|
-| WalletTokenSeed | 월렛 토큰 시드 객체   | M       |[WalletTokenSeed](#1-wallettokenseed)          |
+| WalletTokenSeed | Wallet token seed object | M       |[WalletTokenSeed](#1-wallettokenseed)          |
 
 ### Usage
 
@@ -234,7 +234,7 @@ WalletTokenSeed tokenSeed = walletApi.createWalletTokenSeed(purpose, "org.opendi
 ## 5. createNonceForWalletToken
 
 ### Description
-`월렛 토큰 생성을 위한 nonce를 생성한다.`
+`Creates a nonce for wallet token generation.`
 
 ### Declaration
 
@@ -247,14 +247,14 @@ fun createNonceForWalletToken(apiGateWayUrl: String, walletTokenData: WalletToke
 
 | Name           | Type           | Description                  | **M/O** | **Note** |
 |----------------|----------------|-----------------------|---------|----------|
-| apiGateWayUrl | String | API GW URL      | M       |          |
-| walletTokenData | WalletTokenData | 월렛 토큰 데이터      | M       |[WalletTokenData](#2-wallettokendata)          |
+| apiGateWayUrl | String | API GW URL | M       |          |
+| walletTokenData | WalletTokenData | Wallet token data | M       |[WalletTokenData](#2-wallettokendata)          |
 
 ### Returns
 
 | Type    | Description              | **M/O** | **Note** |
 |---------|-------------------|---------|----------|
-| String  | wallet token 생성을 위한 nonce | M       |          |
+| String  | Nonce for wallet token generation | M       |          |
 
 ### Usage
 
@@ -267,7 +267,7 @@ String nonce = walletApi.createNonceForWalletToken(apiGateWayUrl, walletTokenDat
 ## 6. bindUser
 
 ### Description
-`Wallet에 사용자 개인화를 수행한다.`
+`Performs user personalization on the Wallet.`
 
 ### Declaration
 
@@ -280,13 +280,13 @@ fun bindUser(hWalletToken: String): Boolean
 
 | Name          | Type   | Description                       | **M/O** | **Note** |
 |---------------|--------|----------------------------|---------|----------|
-| hWalletToken  | String | 월렛토큰                  | M       |          |
+| hWalletToken  | String | Wallet token | M       |          |
 
 ### Returns
 
 | Type    | Description                | **M/O** | **Note** |
 |---------|---------------------|---------|----------|
-| Boolean | 개인화 성공 여부를 반환한다. | M       |          |
+| Boolean | Returns whether personalization was successful. | M       |          |
 
 ### Usage
 
@@ -299,7 +299,7 @@ boolean success = walletApi.bindUser("hWalletToken");
 ## 7. unbindUser
 
 ### Description
-`사용자 비개인화를 수행한다.`
+`Performs user depersonalization.`
 
 ### Declaration
 
@@ -312,13 +312,13 @@ fun unbindUser(hWalletToken: String): Boolean
 
 | Name          | Type   | Description                       | **M/O** | **Note** |
 |---------------|--------|----------------------------|---------|----------|
-| hWalletToken  | String | 월렛토큰                  | M       |          |
+| hWalletToken  | String | Wallet token | M       |          |
 
 ### Returns
 
 | Type    | Description                | **M/O** | **Note** |
 |---------|---------------------|---------|----------|
-| Boolean | 비개인화 성공 여부를 반환한다. | M       |          |
+| Boolean | Returns whether depersonalization was successful. | M       |          |
 
 ### Usage
 
@@ -331,7 +331,7 @@ boolean success = walletApi.unbindUser("hWalletToken");
 ## 8. registerLock
 
 ### Description
-`Wallet의 잠금 상태를 설정한다.`
+`Sets the lock state of the Wallet.`
 
 ### Declaration
 
@@ -344,15 +344,15 @@ fun registerLock(hWalletToken: String, passCode: String, isLock: Boolean): Boole
 
 | Name         | Type   | Description                        | **M/O** | **Note** |
 |--------------|--------|-----------------------------|---------|----------|
-| hWalletToken | String | 월렛토큰                   | M       |          |
-| passCode     | String | Unlock PIN               | M       |          |
-| isLock       | Boolean | 잠금 활성화 여부            | M       |          |
+| hWalletToken | String | Wallet token | M       |          |
+| passCode     | String | Unlock PIN | M       |          |
+| isLock       | Boolean | Whether to enable locking | M       |          |
 
 ### Returns
 
 | Type    | Description                | **M/O** | **Note** |
 |---------|---------------------|---------|----------|
-| Boolean | 잠금 설정 성공 여부를 반환한다. | M       |          |
+| Boolean | Returns whether the lock setting was successful. | M       |          |
 
 ### Usage
 
@@ -365,7 +365,7 @@ boolean success = walletApi.registerLock("hWalletToken", "123456", true);
 ## 9. authenticateLock
 
 ### Description
-`Wallet의 Unlock을 위한 인증을 수행한다.`
+`Performs authentication to unlock the Wallet.`
 
 ### Declaration
 
@@ -378,7 +378,7 @@ fun authenticateLock(passCode: String)
 
 | Name         | Type   | Description                        | **M/O** | **Note** |
 |--------------|--------|-----------------------------|---------|----------|
-| passCode     | String |Unlock PIN               | M       | registerLock 시 설정한 PIN          | 
+| passCode     | String | Unlock PIN | M       | PIN set during registerLock | 
 
 ### Returns
 
@@ -395,7 +395,7 @@ walletApi.authenticateLock("hWalletToken", "123456");
 ## 10. createHolderDIDDoc
 
 ### Description
-`사용자 DID Document를 생성한다.`
+`Creates a user DID Document.`
 
 ### Declaration
 
@@ -408,13 +408,13 @@ fun createHolderDIDDoc(hWalletToken: String): DIDDocument
 
 | Name          | Type   | Description                       | **M/O** | **Note** |
 |---------------|--------|----------------------------|---------|----------|
-| hWalletToken  | String | 월렛토큰                  | M       |          |
+| hWalletToken  | String | Wallet token | M       |          |
 
 ### Returns
 
 | Type         | Description                  | **M/O** | **Note** |
 |--------------|-----------------------|---------|----------|
-| DIDDocument  | 사용자 DID Document   | M       |          |
+| DIDDocument  | User DID Document | M       |          |
 
 ### Usage
 
@@ -427,7 +427,7 @@ DIDDocument didDoc = walletApi.createHolderDIDDoc("hWalletToken");
 ## 11. createSignedDIDDoc
 
 ### Description
-`서명된 사용자 DID Document 객체를 생성한다.`
+`Creates a signed user DID Document object.`
 
 ### Declaration
 
@@ -440,13 +440,13 @@ fun createSignedDIDDoc(ownerDIDDoc: DIDDocument): SignedDidDoc
 
 | Name          | Type   | Description                       | **M/O** | **Note** |
 |---------------|--------|----------------------------|---------|----------|
-| ownerDIDDoc  | DIDDocument | 소유자의 DID Document 객체                 | M       |          |
+| ownerDIDDoc  | DIDDocument | Owner's DID Document object | M       |          |
 
 ### Returns
 
 | Type            | Description                  | **M/O** | **Note** |
 |-----------------|-----------------------|---------|----------|
-| SignedDidDoc | 서명된 DID Document 객체   | M       |[SignedDIDDoc](#4-signeddiddoc)          |
+| SignedDidDoc | Signed DID Document object | M       |[SignedDIDDoc](#4-signeddiddoc)          |
 
 ### Usage
 
@@ -459,7 +459,7 @@ SignedDidDoc signedDidDoc = walletApi.createSignedDIDDoc(ownerDIDDoc);
 ## 12. getDIDDocument
 
 ### Description
-`DID Document를 조회한다.`
+`Retrieves a DID Document.`
 
 ### Declaration
 
@@ -472,13 +472,13 @@ fun getDIDDocument(type: Int): DIDDocument?
 
 | Name          | Type   | Description                       | **M/O** | **Note** |
 |---------------|--------|----------------------------|---------|----------|
-| type  | Int | 1 : deviceKey DID Document, 2: holder DID document                  | M       |          |
+| type  | Int | 1: deviceKey DID Document, 2: holder DID document | M       |          |
 
 ### Returns
 
 | Type         | Description                  | **M/O** | **Note** |
 |--------------|-----------------------|---------|----------|
-| DIDDocument  | DID Document       | M       |          |
+| DIDDocument  | DID Document | M       |          |
 
 ### Usage
 
@@ -491,7 +491,7 @@ DIDDocument didDoc = walletApi.getDIDDocument("hWalletToken", 1);
 ## 13. generateKeyPair
 
 ### Description
-`서명을 위한 PIN 키 쌍을 생성하여 Wallet에 저장한다.`
+`Generates a PIN key pair for signing and stores it in the Wallet.`
 
 ### Declaration
 
@@ -504,8 +504,8 @@ fun generateKeyPair(hWalletToken: String?, passcode: String?)
 
 | Name         | Type   | Description                        | **M/O** | **Note** |
 |--------------|--------|-----------------------------|---------|----------|
-| hWalletToken | String |월렛토큰                   | M       |          |
-| passCode     | String |서명용 PIN               | M       | PIN 서명용 키 생성 시        | 
+| hWalletToken | String | Wallet token | M       |          |
+| passCode     | String | Signing PIN | M       | PIN for signature key generation | 
 
 ### Returns
 
@@ -522,7 +522,7 @@ walletApi.generateKeyPair("hWalletToken", "123456");
 ## 14. isLock
 
 ### Description
-`Wallet의 잠금 타입을 조회한다.`
+`Checks the lock type of the Wallet.`
 
 ### Declaration
 
@@ -537,7 +537,7 @@ fun isLock(): Boolean
 
 | Type    | Description                | **M/O** | **Note** |
 |---------|---------------------|---------|----------|
-| Boolean | Wallet 잠금 타입을 반환한다. | M       |          |
+| Boolean | Returns the Wallet lock type. | M       |          |
 
 ### Usage
 
@@ -550,7 +550,7 @@ boolean isLocked = walletApi.isLock();
 ## 15. getSignedWalletInfo
 
 ### Description
-`서명된 Wallet 정보를 조회한다.`
+`Retrieves signed Wallet information.`
 
 ### Declaration
 
@@ -567,7 +567,7 @@ Void
 
 | Type             | Description                    | **M/O** | **Note** |
 |------------------|-------------------------|---------|----------|
-| SignedWalletInfo | 서명된 WalletInfo 객체       | M       |[SignedWalletInfo](#5-signedwalletinfo)          |
+| SignedWalletInfo | Signed WalletInfo object | M       |[SignedWalletInfo](#5-signedwalletinfo)          |
 
 ### Usage
 
@@ -580,7 +580,7 @@ SignedWalletInfo signedInfo = walletApi.getSignedWalletInfo();
 ## 16. requestRegisterUser
 
 ### Description
-`사용자 등록을 요청한다.`
+`Requests user registration.`
 
 ### Declaration
 
@@ -593,17 +593,17 @@ fun requestRegisterUser(hWalletToken: String, tasUrl: String, txId: String, serv
 
 | Name         | Type           | Description                        | **M/O** | **Note** |
 |--------------|----------------|-----------------------------|---------|----------|
-| tasUrl | String         | TAS URL                   | M       |          |
-| hWalletToken | String         | 월렛토큰                   | M       |          |
-| txId     | String       | 거래코드               | M       |          |
-| serverToken     | String       | 서버토큰                | M       |          |
-| signedDIDDoc|SignedDidDoc | 서명된 DID Document 객체   | M       |[SignedDIDDoc](#4-signeddiddoc)          |
+| tasUrl | String         | TAS URL | M       |          |
+| hWalletToken | String         | Wallet token | M       |          |
+| txId     | String       | Transaction code | M       |          |
+| serverToken     | String       | Server token | M       |          |
+| signedDIDDoc|SignedDidDoc | Signed DID Document object | M       |[SignedDIDDoc](#4-signeddiddoc)          |
 
 ### Returns
 
 | Type    | Description                | **M/O** | **Note** |
 |---------|---------------------|---------|----------|
-| String | 사용자 등록 프로토콜 수행 결과를 반환핟다. | M       |          |
+| String | Returns the result of the user registration protocol execution. | M       |          |
 
 ### Usage
 
@@ -616,7 +616,7 @@ String _M132_RequestRegisterUser = walletApi.requestRegisterUser("hWalletToken",
 ## 17. getSignedDIDAuth
 
 ### Description
-`DIDAuth 서명을 수행한다.`
+`Performs DIDAuth signing.`
 
 ### Declaration
 
@@ -629,14 +629,14 @@ fun getSignedDIDAuth(authNonce: String, passcode: String?): DIDAuth
 
 | Name          | Type   | Description                       | **M/O** | **Note** |
 |---------------|--------|----------------------------|---------|----------|
-| authNonce  | String | profile의 auth nonce                  | M       |          |
-|passcode|String | 서명용 PIN   | M       |          |
+| authNonce  | String | Auth nonce from profile | M       |          |
+|passcode|String | Signing PIN | M       |          |
 
 ### Returns
 
 | Type            | Description                  | **M/O** | **Note** |
 |-----------------|-----------------------|---------|----------|
-| DIDAuth   | 서명된 DIDAuth 객체   | M       |[DIDAuth](#6-didauth)          |
+| DIDAuth   | Signed DIDAuth object | M       |[DIDAuth](#6-didauth)          |
 
 ### Usage
 
@@ -649,7 +649,7 @@ DIDAuth signedDIDAuth = walletApi.getSignedDIDAuth("authNonce", "123456");
 ## 18. requestIssueVc
 
 ### Description
-`VC 발급을 요청한다.`
+`Requests VC issuance.`
 
 ### Declaration
 
@@ -662,19 +662,19 @@ fun requestIssueVc(hWalletToken: String, tasUrl: String, apiGateWayUrl: String, 
 
 | Name        | Type           | Description                        | **M/O** | **Note** |
 |-------------|----------------|-----------------------------|---------|----------|
-| tasUrl | String         | TAS URL                  | M       |          |
-| hWalletToken | String         | 월렛토큰                   | M       |          |
-| txId     | String       | 거래코드               | M       |          |
-| serverToken     | String       | 서버토큰                | M       |          |
-| refId     | String       | 참조번호                | M       |          |
-| profile|IssueProfile | Issue Profile   | M       |[데이터모델 참조]          |
-| signedDIDAuth|DIDAuth | 서명된 DID Document 객체   | M       |[DIDAuth](#6-didauth)         |
+| tasUrl | String         | TAS URL | M       |          |
+| hWalletToken | String         | Wallet token | M       |          |
+| txId     | String       | Transaction code | M       |          |
+| serverToken     | String       | Server token | M       |          |
+| refId     | String       | Reference number | M       |          |
+| profile|IssueProfile | Issue Profile | M       |[See data model reference]          |
+| signedDIDAuth|DIDAuth | Signed DID Document object | M       |[DIDAuth](#6-didauth)         |
 
 ### Returns
 
 | Type    | Description                | **M/O** | **Note** |
 |---------|---------------------|---------|----------|
-| String | VC ID | M       |성공 시 발급된 VC의 ID를 반환한다          |
+| String | VC ID | M       |Returns the ID of the issued VC if successful          |
 
 ### Usage
 
@@ -687,7 +687,7 @@ String vcId = walletApi.requestIssueVc("hWalletToken", "txId", "hServerToken", "
 ## 19. requestRevokeVc
 
 ### Description
-`VC 폐기를 요청한다.`
+`Requests VC revocation.`
 
 ### Declaration
 
@@ -700,20 +700,20 @@ fun requestRevokeVc(hWalletToken: String, tasUrl: String, serverToken: String, t
 
 | Name        | Type           | Description                        | **M/O** | **Note** |
 |-------------|----------------|-----------------------------|---------|----------|
-| hWalletToken | String         | 월렛토큰                   | M       |          |
-| tasUrl | String         | TAS URL                   | M       |          |
-| txId     | String       | 거래코드               | M       |          |
-| serverToken     | String       | 서버토큰                | M       |          |
-| vcId     | String       | VC ID                | M       |          |
-| issuerNonce|String | 발급처 nonce   | M       |[데이터모델 참조]          |
-| passcode|String | 서명용 PIN   | M       |[DIDAuth](#6-didauth)         |
-| authType|VERIFY_AUTH_TYPE | 제출 인증수단 타입   | M       |       |
+| hWalletToken | String         | Wallet token | M       |          |
+| tasUrl | String         | TAS URL | M       |          |
+| txId     | String       | Transaction code | M       |          |
+| serverToken     | String       | Server token | M       |          |
+| vcId     | String       | VC ID | M       |          |
+| issuerNonce|String | Issuer nonce | M       |[See data model reference]          |
+| passcode|String | Signing PIN | M       |[DIDAuth](#6-didauth)         |
+| authType|VERIFY_AUTH_TYPE | Authentication type for submission | M       |       |
 
 ### Returns
 
 | Type    | Description                | **M/O** | **Note** |
 |---------|---------------------|---------|----------|
-| String | txId | M       |성공 시 거래코드를 반환한다          |
+| String | txId | M       |Returns the transaction code if successful          |
 
 ### Usage
 
@@ -726,7 +726,7 @@ String result = walletApi.requestRevokeVc("hWalletToken", "hServerToken", "txId"
 ## 20. getAllCredentials
 
 ### Description
-`Wallet에 저장된 모든 VC를 조회한다.`
+`Retrieves all VCs stored in the Wallet.`
 
 ### Declaration
 
@@ -739,13 +739,13 @@ fun getAllCredentials(hWalletToken: String): List<VerifiableCredential>?
 
 | Name          | Type   | Description                       | **M/O** | **Note** |
 |---------------|--------|----------------------------|---------|----------|
-| hWalletToken  | String | 월렛토큰                  | M       |          |
+| hWalletToken  | String | Wallet token | M       |          |
 
 ### Returns
 
 | Type            | Description                | **M/O** | **Note** |
 |-----------------|---------------------|---------|----------|
-| List&lt;VerifiableCredential&gt; | VC List 객체  | M       |          |
+| List&lt;VerifiableCredential&gt; | VC List object | M       |          |
 
 ### Usage
 
@@ -758,7 +758,7 @@ List<VerifiableCredential> vcList = walletApi.getAllCredentials("hWalletToken");
 ## 21. getCredentials
 
 ### Description
-`특정 VC를 조회한다.`
+`Retrieves specific VCs.`
 
 ### Declaration
 
@@ -771,14 +771,14 @@ fun getCredentials(hWalletToken: String, identifiers: List<String>): List<Verifi
 
 | Name           | Type   | Description                       | **M/O** | **Note** |
 |----------------|--------|----------------------------|---------|----------|
-| hWalletToken   | String | 월렛토큰                  | M       |          |
-| identifiers   | List&lt;String&gt;   | 조회 대상 VC ID List               | M       |          |
+| hWalletToken   | String | Wallet token | M       |          |
+| identifiers   | List&lt;String&gt;   | List of VC IDs to retrieve | M       |          |
 
 ### Returns
 
 | Type        | Description                | **M/O** | **Note** |
 |-------------|---------------------|---------|----------|
-| List&lt;VerifiableCredential&gt;  | VC List 객체    | M       |          |
+| List&lt;VerifiableCredential&gt;  | VC List object | M       |          |
 
 ### Usage
 
@@ -791,7 +791,7 @@ List<VerifiableCredential> vcList = walletApi.getCredentials("hWalletToken", Lis
 ## 22. deleteCredentials
 
 ### Description
-`특정 VC를 삭제한다.`
+`Deletes specific VCs.`
 
 ### Declaration
 
@@ -804,8 +804,8 @@ fun deleteCredentials(hWalletToken: String, vcId: String)
 
 | Name           | Type   | Description                       | **M/O** | **Note** |
 |----------------|--------|----------------------------|---------|----------|
-| hWalletToken   | String | 월렛토큰                  | M       |          |
-| vcId   | String   | 삭제 대상 VC ID             | M       |          |
+| hWalletToken   | String | Wallet token | M       |          |
+| vcId   | String   | VC ID to delete | M       |          |
 
 ### Returns
 N/A
@@ -821,7 +821,7 @@ walletApi.deleteCredentials("hWalletToken", "vcId");
 ## 23. createEncVp
 
 ### Description
-`암호화된 VP를 생성한다.`
+`Creates an encrypted VP.`
 
 ### Declaration
 
@@ -835,19 +835,19 @@ fun createEncVp(hWalletToken: String, vcId: String, claimCode: List<String>, req
 
 | Name        | Type           | Description                        | **M/O** | **Note** |
 |-------------|----------------|-----------------------------|---------|----------|
-| hWalletToken | String         | 월렛토큰                   | M       |          |
-| vcId     | String       | VC ID               | M       |          |
-| claimCode     | List&lt;String&gt;       | 제출할 클레임 코드                | M       |          |
-| reqE2e     | ReqE2e       | E2E 암복호화 정보                | M       |데이터모델 참조        |
-|passcode|String | 서명용 PIN   | M       |          |
-| nonce|String | nonce   | M       |       |
-| authType|VERIFY_AUTH_TYPE | 제출 인증수단 타입   | M       |       |
+| hWalletToken | String         | Wallet token | M       |          |
+| vcId     | String       | VC ID | M       |          |
+| claimCode     | List&lt;String&gt;       | Claim codes to submit | M       |          |
+| reqE2e     | ReqE2e       | E2E encryption information | M       |See data model reference       |
+|passcode|String | Signing PIN | M       |          |
+| nonce|String | nonce | M       |       |
+| authType|VERIFY_AUTH_TYPE | Authentication type for submission | M       |       |
 
 ### Returns
 
 | Type   | Description              | **M/O** | **Note** |
 |--------|-------------------|---------|----------|
-| ReturnEncVP  | 암호화 VP 객체| M       |acce2e 객체, encVp 멀티베이스 인코딩 값      |
+| ReturnEncVP  | Encrypted VP object | M       |Contains acce2e object and multibase-encoded encVp value      |
 
 ### Usage
 
@@ -860,7 +860,7 @@ EncVP encVp = walletApi.createEncVp("hWalletToken", "vcId", List.of("claim_code"
 ## 24. registerBioKey
 
 ### Description
-`서명용 생체 인증 키를 등록한다.`
+`Registers a biometric authentication key for signing.`
 
 ### Declaration
 
@@ -889,7 +889,7 @@ walletApi.registerBioKey("hWalletToken", context);
 ## 25. authenticateBioKey
 
 ### Description
-`서명을 위한 생체 인증 키를 사용하기 위하여 인증을 수행한다.`
+`Performs authentication to use the biometric authentication key for signing.`
 
 ### Declaration
 
@@ -920,7 +920,7 @@ walletApi.authenticateBioKey(fragment.this, context);
 ## 26. addProofsToDocument
 
 ### Description
-`서명이 필요한 객체에 Proof객체를 추가한다.`
+`Adds a Proof object to an object that needs signing.`
 
 ### Declaration
 
@@ -933,18 +933,18 @@ fun addProofsToDocument(document: ProofContainer, keyIds: List<String>, did: Str
 
 | Name         | Type         | Description                        | **M/O** | **Note** |
 |--------------|--------------|-----------------------------|---------|----------|
-| document     | ProofContainer     | Proof객체를 상속받은 문서 객체                        | M       |          |
-| keyIds       | List&lt;String&gt;       | 서명할 Key ID List                 | M       |          |
-| did     | String     | 서명 대상 DID                        | M       |          |
-| type       | Int       | 1 : deviceKey DID Document, 2: holder DID document                 | M       |          |
-| passcode     | String     | 서명용 PIN                        | O       | PIN 키 서명 시         |
-| isDIDAuth       | Boolean       | DIDAuth객체일경우 true / 이외에는 false               | M       |          |
+| document     | ProofContainer     | Document object that inherits from Proof | M       |          |
+| keyIds       | List&lt;String&gt;       | List of Key IDs to sign with | M       |          |
+| did     | String     | Target DID for signing | M       |          |
+| type       | Int       | 1: deviceKey DID Document, 2: holder DID document | M       |          |
+| passcode     | String     | Signing PIN | O       | For PIN key signing |
+| isDIDAuth       | Boolean       | True if it's a DIDAuth object, false otherwise | M       |          |
 
 ### Returns
 
 | Type    | Description                | **M/O** | **Note** |
 |---------|---------------------|---------|----------|
-| ProofContainer | Proof객체를 포함한 원객체 | M       |          |
+| ProofContainer | Original object including Proof object | M       |          |
 
 ### Usage
 
@@ -958,7 +958,7 @@ DIDDocument signedDIDDoc = (DIDDocument) walletApi.addProofsToDocument(didDocume
 ## 27. isSavedBioKey
 
 ### Description
-`저장된 생체 인증 키가 있는지 확인한다.`
+`Checks if there is a saved biometric authentication key.`
 
 ### Declaration
 
@@ -975,7 +975,7 @@ Unit
 
 | Type    | Description                | **M/O** | **Note** |
 |---------|---------------------|---------|----------|
-| Boolean | 생체 인증 키 존재 여부를 반환한다. | M       |          |
+| Boolean | Returns whether a biometric authentication key exists. | M       |          |
 
 ### Usage
 
@@ -988,7 +988,7 @@ boolean hasBioKey = walletApi.isSavedBioKey();
 ## 28. changePin
 
 ### Description
-`서명용 PIN 변경`
+`Changes the signing PIN`
 
 ### Declaration
 
@@ -1001,9 +1001,9 @@ fun changePin(keyId: String, oldPin: String, newPin: String)
 
 | Name   | Type   | Description   | **M/O** | **Note** |
 | ------ | ------ | ------------- | ------- | -------- |
-| keyId     | String | 서명용 키아이디 | M       |          |
-| oldPIN | String | 현재 PIN      | M       |          |
-| newPIN | String | 변경할 PIN    | M       |          |
+| keyId     | String | Signing key ID | M       |          |
+| oldPIN | String | Current PIN | M       |          |
+| newPIN | String | New PIN | M       |          |
 
 ### Returns
 
@@ -1021,7 +1021,7 @@ walletApi.changePin(Constants.KEY_ID_PIN, oldPin, newPin);
 ## 29. changeLock
 
 ### Description
-`Unlock PIN 변경`
+`Changes the Unlock PIN`
 
 ### Declaration
 
@@ -1034,8 +1034,8 @@ fun changeLock(oldPin: String, newPin: String)
 
 | Name   | Type   | Description   | **M/O** | **Note** |
 | ------ | ------ | ------------- | ------- | -------- |
-| oldPIN | String | 현재 PIN      | M       |          |
-| newPIN | String | 변경할 PIN    | M       |          |
+| oldPIN | String | Current PIN | M       |          |
+| newPIN | String | New PIN | M       |          |
 
 ### Returns
 
@@ -1086,7 +1086,7 @@ class WalletTokenPurpose {
 
 ### Description
 
-`인가앱이 월렛에 월렛토큰 생성 요청 시 전달하는 데이터`
+`Data that the authorized app delivers to the wallet when requesting wallet token generation`
 
 ### Declaration
 
@@ -1105,18 +1105,18 @@ data class WalletTokenSeed(
 
 | Name          | Type            | Description                | **M/O** | **Note**               |
 |---------------|-----------------|----------------------------|---------|------------------------|
-| purpose | WALLET_TOKEN_PURPOSE   | token 사용 목적     |    M    |[WALLET_TOKEN_PURPOSE](#1-wallet_token_purpose)|
-| pkgName   | String | 인가앱 Package Name                       | M       |          |
-| nonce    | String | wallet nonce                        | M       |          |
-| validUntil    | String | token 만료일시                        | M       |          |
-| userId    | String | 사용자 ID                        | M       |          |
+| purpose | WALLET_TOKEN_PURPOSE   | Token usage purpose | M       |[WALLET_TOKEN_PURPOSE](#1-wallet_token_purpose)|
+| pkgName   | String | Authorized app Package Name | M       |          |
+| nonce    | String | Wallet nonce | M       |          |
+| validUntil    | String | Token expiration date/time | M       |          |
+| userId    | String | User ID | M       |          |
 <br>
 
 ## 2. WalletTokenData
 
 ### Description
 
-`인가앱이 월렛에 월렛토큰 생성 요청 시 월렛이 생성하여 인가앱으로 전달하는 데이터`
+`Data that the wallet creates and delivers to the authorized app when requesting wallet token generation`
 
 ### Declaration
 
@@ -1135,18 +1135,18 @@ data class WalletTokenData(
 
 | Name          | Type            | Description                | **M/O** | **Note**               |
 |---------------|-----------------|----------------------------|---------|------------------------|
-| seed | WalletTokenSeed   | WalletToken Seed     |    M    |[WalletTokenSeed](#1-wallettokenseed)|
-| sha256_pii   | String | 사용자 PII의 해시값                 | M       |          |
-| provider    | Provider | wallet 사업자 정보                        | M       | [Provider](#3-provider)         |
-| nonce    | String | provider nonce                      | M       |          |
-| proof    | Proof | provider proof                        | M       |          |
+| seed | WalletTokenSeed   | WalletToken Seed | M       |[WalletTokenSeed](#1-wallettokenseed)|
+| sha256_pii   | String | Hash value of user PII | M       |          |
+| provider    | Provider | Wallet provider information | M       | [Provider](#3-provider)         |
+| nonce    | String | Provider nonce | M       |          |
+| proof    | Proof | Provider proof | M       |          |
 <br>
 
 ## 3. Provider
 
 ### Description
 
-`Provider 정보`
+`Provider information`
 
 ### Declaration
 
@@ -1162,15 +1162,15 @@ data class Provider(
 
 | Name          | Type            | Description                | **M/O** | **Note**               |
 |---------------|-----------------|----------------------------|---------|------------------------|
-| did    | String | provider DID                      | M       |          |
-| certVcRef    | String | provider 가입증명서 VC URL                        | M       |          |
+| did    | String | Provider DID | M       |          |
+| certVcRef    | String | Provider registration certificate VC URL | M       |          |
 <br>
 
 ## 4. SignedDIDDoc
 
 ### Description
 
-`월렛이 holder의 DID Document를 서명하여 controller에게 등록을 요청하기 위한 문서의 데이터`
+`Data for the document that the wallet signs the holder's DID Document to request registration to the controller`
 
 ### Declaration
 
@@ -1187,17 +1187,17 @@ data class SignedDidDoc(
 
 | Name          | Type            | Description                | **M/O** | **Note**               |
 |---------------|-----------------|----------------------------|---------|------------------------|
-| ownerDidDoc    | String | ownerDidDoc의 multibase 인코딩 값                      | M       |          |
-| wallet    | Wallet | wallet의 id와 wallet의 DID로 구성된 객체                        | M       |          |
-| nonce    | String | wallet nonce                        | M       |          |
-| proof    | Proof | wallet proof                        | M       |          |
+| ownerDidDoc    | String | Multibase-encoded value of ownerDidDoc | M       |          |
+| wallet    | Wallet | Object consisting of wallet id and wallet DID | M       |          |
+| nonce    | String | Wallet nonce | M       |          |
+| proof    | Proof | Wallet proof | M       |          |
 <br>
 
 ## 5. SignedWalletInfo
 
 ### Description
 
-`서명 된 walletinfo 데이터`
+`Signed wallet info data`
 
 ### Declaration
 
@@ -1213,16 +1213,16 @@ data class SignedWalletInfo(
 
 | Name          | Type            | Description                | **M/O** | **Note**               |
 |---------------|-----------------|----------------------------|---------|------------------------|
-| wallet    | Wallet | wallet의 id와 wallet의 DID로 구성된 객체                        | M       |          |
-| nonce    | String | wallet nonce                        | M       |          |
-| proof    | Proof | wallet proof                        | M       |          |
+| wallet    | Wallet | Object consisting of wallet id and wallet DID | M       |          |
+| nonce    | String | Wallet nonce | M       |          |
+| proof    | Proof | Wallet proof | M       |          |
 <br>
 
 ## 6. DIDAuth
 
 ### Description
 
-`DID Auth 데이터`
+`DID Auth data`
 
 ### Declaration
 
@@ -1238,7 +1238,7 @@ data class DIDAuth(
 
 | Name          | Type            | Description                | **M/O** | **Note**               |
 |---------------|-----------------|----------------------------|---------|------------------------|
-| did    | String | 인증 대상자의 DID                        | M       |          |
-| authNonce    | String | DID Auth 용 nonce                        | M       |          |
-| proof    | Proof | authentication proof                        | M       |          |
+| did    | String | DID of the authentication subject | M       |          |
+| authNonce    | String | Nonce for DID Auth | M       |          |
+| proof    | Proof | Authentication proof | M       |          |
 <br>

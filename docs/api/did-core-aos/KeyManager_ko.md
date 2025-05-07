@@ -15,7 +15,7 @@ puppeteer:
         fullPage: false
 ---
 
-Android KeyManager Core SDK API
+Android KeyManager Core API
 ==
 
 - 주제: KeyManager
