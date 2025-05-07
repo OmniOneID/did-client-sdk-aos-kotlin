@@ -15,31 +15,32 @@ puppeteer:
         fullPage: false
 ---
 
-Android Communication SDK API
+Android Communication API
 ==
 
-- Subject: Communication SDK
-- Author: Sangjun Kim
-- Date: 2025-03-13
-- Version: v1.0.0
+- 주제: Communication
+- 작성: Sangjun Kim
+- 일자: 2025-03-13
+- 버전: v1.0.0
 
-| Version | Date       | Changes                  |
-| ------- | ---------- | ------------------------ |
-| v1.0.0  | 2025-03-13 | Initial version          |
+| 버전   | 일자       | 변경 내용                 |
+| ------ | ---------- | -------------------------|
+| v1.0.0 | 2025-03-13 | 초기 작성                 |
 
 
 <div style="page-break-after: always;"></div>
 
-# Table of Contents
-- [APIs](#api-list)
+# 목차
+- [APIs](#api-목록)
   - [1. makeHttpRequest](#1-makehttprequest)
 
+<br>
 
-# API List
+## API 목록
 ### 1. makeHttpRequest
 
 #### Description
-`Provides HTTP request and response functionality.`
+`Http 요청 및 응답 기능 제공`
 
 #### Declaration
 
@@ -47,19 +48,21 @@ Android Communication SDK API
 fun makeHttpRequest(urlString: String, method: String, payload: String): String
 ```
 
+
 #### Parameters
 
-| Parameter | Type   | Description                | **M/O** | **Note** |
+| Parameter | Type   | Description                | **M/O** | **비고** |
 |-----------|--------|----------------------------|---------|---------|
-| urlString    | String    | Server URL |M| |
-| method    | String    | HTTP Method |M| |
-| payload    | String    | Request data |M| |
+| urlString    | String    | 서버 URL |M| |
+| method    | String    | HTTP 메서드 |M| |
+| payload    | String    | 요청데이터 |M| |
 
 #### Returns
 
-| Type | Description                |**M/O** | **Note** |
-|------|----------------------------|---------|-------------|
-| String  | Response data |M| |
+| Type | Description                |**M/O** | **비고** |
+|------|----------------------------|---------|---------|
+| String  | 응답데이터 |M| |
+
 
 #### Usage
 ```java

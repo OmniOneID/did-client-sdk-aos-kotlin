@@ -15,23 +15,23 @@ puppeteer:
         fullPage: false
 ---
 
-Android DIDManager Core SDK API
+Android DIDManager Core API
 ==
 
-- Topic: DIDManager
-- Author: Sangjun Kim
-- Date: 2025-03-13
-- Version: v1.0.0
+- 주제: DIDManager
+- 작성: Sangjun Kim
+- 일자: 2025-03-13
+- 버전: v1.0.0
 
-| Version | Date       | Changes                  |
-| ------- | ---------- | ------------------------ |
-| v1.0.0  | 2025-03-13 | Initial version          |
+| 버전   | 일자       | 변경 내용                 |
+| ------ | ---------- | -------------------------|
+| v1.0.0 | 2025-03-13 | 초기 작성                 |
 
 
 <div style="page-break-after: always;"></div>
 
-# Table of Contents
-- [APIs](#api-list)
+# 목차
+- [APIs](#api-목록)
     - [1. constructor](#1-constructor)
     - [2. genDID](#2-isanykeysaved)
     - [3. isSaved](#3-issaved)
@@ -54,11 +54,11 @@ Android DIDManager Core SDK API
     - [3. KeyInfo](#3-keyinfo)
     - [4. Service](#4-service)
 
-# API List
+# API 목록
 ## 1. Constructor
 
 ### Description
-`DIDManager constructor`
+`DIDManager costructor`
 
 ### Declaration
 
@@ -66,18 +66,20 @@ Android DIDManager Core SDK API
 constructor(fileName: String, context: Context)
 ```
 
+
 ### Parameters
 
-| Parameter | Type   | Description                | **M/O** | **Notes** |
-|-----------|--------|----------------------------|---------|-----------|
-| fileName  | string | File name                  | M       | Name of the wallet file to be saved in DIDManager |
-| context   | Context| Context                    | M       |           |
+| Parameter | Type   | Description                | **M/O** | **비고** |
+|-----------|--------|----------------------------|---------|---------|
+| fileName    | string    | 파일명 |M|DIDManager에서 저장할 월렛의 파일명|
+| context    | Context | context |M|  |
 
 ### Returns
 
-| Type        | Description      | **M/O** | **Notes** |
-|-------------|------------------|---------|-----------|
-| DIDManager  | DIDManager object| M       |           |
+| Type | Description                |**M/O** | **비고** |
+|------|----------------------------|---------|---------|
+| DIDManager  | DIDManager 객체 |M| |
+
 
 ### Usage
 ```java
@@ -86,11 +88,10 @@ DIDManager<DIDDocument> didManager = new DIDManager<>("MyWallet", this);
 
 <br>
 
-
 ## 2. genDID
 
 ### Description
-`Returns a random DID string including the methodName.`
+`methodName을 포함한 랜덤한 DID 문자열을 반환한다.`
 
 ### Declaration
 
@@ -101,15 +102,17 @@ fun genDID(methodName: String): String
 
 ### Parameters
 
-| Name       | Type   | Description          | **M/O** | **Note** |
-|------------|--------|----------------------|---------|----------|
-| methodName | String | Method name to use   | M       |          |
+| Name      | Type   | Description                | **M/O** | **Note**            |
+|-----------|--------|----------------------------|---------|---------------------|
+| methodName | String | 사용할 method name          | M       |                     |
 
 ### Returns
 
-| Type   | Description  | **M/O** | **Notes**                                                         |
-|--------|--------------|---------|-------------------------------------------------------------------|
-| String | DID string   | M       | Returns a string in the following format: <br>`did:omn:3kH8HncYkmRTkLxxipTP9PB3jSXB` |
+| Type | Description                |**M/O** | **비고** |
+|------|----------------------------|---------|---------|
+| String | DID 문자열                   | M       | 다음과 같은 형식의 문자열을 반환하다. <br>`did:omn:3kH8HncYkmRTkLxxipTP9PB3jSXB` |
+
+
 
 ### Usage
 ```java
@@ -121,7 +124,7 @@ String did = DIDManager.genDID("MyDID");
 ## 3. isSaved
 
 ### Description
-`Returns whether a DID document is saved in the wallet.`
+`월렛에 저장된 DID 문서의 존재 여부를 반환한다.`
 
 ### Declaration
 
@@ -135,13 +138,15 @@ n/a
 
 ### Returns
 
-| Type    | Description                 | **M/O** | **Notes** |
-|---------|-----------------------------|---------|-----------|
-| Boolean | Indicates if a DID document is saved | M       |           |
+| Type | Description                |**M/O** | **비고** |
+|------|----------------------------|---------|---------|
+| Boolean  | 저장된 DID 문서 유무 |M| |
+
+
 
 ### Usage
 ```java
-DIDManager<DIDDocument> didManager = new DIDManager<>("MyWallet", this);
+DIDManager<DIDDocument> didManager = new DIDManager<>("MyWallet", this)
 
 if (didManager.isSaved()) {
   DIDDocument didDocument = didManager.getDocument();
@@ -153,7 +158,7 @@ if (didManager.isSaved()) {
 ## 4. createDocument
 
 ### Description
-`Creates a "temporary DIDDocument object" and manages it as an internal variable.`
+`"임시 DIDDocument 객체"를 생성하여 내부 변수로 관리한다.`
 
 ### Declaration
 
@@ -162,13 +167,14 @@ if (didManager.isSaved()) {
 fun createDocument(did: String, keyInfos: List<DIDKeyInfo>, controller: String, service: List<Service>?)
 ```
 
+
 ### Parameters
-| Parameter   | Type                             | Description                                                  | **M/O** | **Notes**                                          |
-|-------------|----------------------------------|--------------------------------------------------------------|---------|----------------------------------------------------|
-| did         | String                           | User DID                                                     | M       | Refer to [genDID](#2-gendid) for DID generation     |
-| keyInfos    | List<DIDKeyInfo>                 | Array of public key information objects to register in DID document | M       | Refer to [DIDKeyInfo](#2-didkeyinfo)               |
-| controller  | String                           | DID to register as controller in the DID document.<br>If null, the `did` parameter is used. | M       |                                                    |
-| service     | List<Service>                    | Service information objects to specify in the DID document   | M       | Refer to [Service](#4-service)                     |
+| Parameter | Type   | Description                | **M/O** | **비고** |
+|-----------|--------|----------------------------|---------|---------|
+| did    | String    | 사용자 DID |M| DID 생성은 [genDID](#2-gendid)를 참고 |
+| keyInfos    | List&lt;DIDKeyInfo&gt; | DID 문서에 등록할 공개키 정보 객체의 배열 |    M    | [DIDKeyInfo](#2-didkeyinfo) |
+| controller    | String    | DID 문서에 controller로 등록할 DID. <br>null이면, `did` 항목을 사용한다. |    M    | |
+| service    | List&lt;Service&gt;    | DID 문서에 명시할 서비스 정보 객체  |    M    | [Service](#4-service) |
 
 ### Returns
 Unit
@@ -186,7 +192,7 @@ didManager.createDocument(did, didKeyInfos, did, null);
 ## 5. getDocument
 
 ### Description
-`Returns the "temporary DIDDocument object". If null, returns the saved DID document.`
+`"임시 DIDDocument 객체"를 리턴하며 null이면, 저장된 DID 문서를 리턴한다. `
 
 ### Declaration
 
@@ -201,13 +207,15 @@ n/a
 
 ### Returns
 
-| Type        | Description | **M/O** | **Notes**                           |
-|-------------|--------------|---------|-------------------------------------|
-| DIDDocument | DID document | M       | Refer to [DIDDocument](#1-diddocument) |
+
+| Type | Description                |**M/O** | **비고** |
+|------|----------------------------|---------|---------|
+| DIDDocument | DID 문서 |M|[DIDDocument](#1-diddocument) |
+
 
 ### Usage
 ```java
-DIDManager<DIDDocument> didManager = new DIDManager<>("MyWallet", this);
+DIDManager<DIDDocument> didManager = new DIDManager<>("MyWallet", this)
 
 if (didManager.isSaved()) {
   DIDDocument didDocument = didManager.getDocument();
@@ -219,7 +227,7 @@ if (didManager.isSaved()) {
 ## 6. replaceDocument
 
 ### Description
-`Replaces the "temporary DIDDocument object" with the provided object.`
+`임시 DIDDocument 객체"를 입력받은 객체로 대치한다.`
 
 ### Declaration
 
@@ -229,10 +237,11 @@ fun replaceDocument(didDocument: DIDDocument, needUpdate: Boolean)
 
 ### Parameters
 
-| Parameter   | Type        | Description                                                                                             | **M/O** | **Notes**                                                                                                                                                               |
-|-------------|-------------|---------------------------------------------------------------------------------------------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| didDocument | DIDDocument | The DID document object to replace                                                                      | M       | Refer to [DIDDocument](#1-diddocument)                                                                                                                                  |
-| needUpdate  | Boolean     | Whether to update the `updated` attribute of the DID document object to the current time                | M       | If the DID document object has no proof added, you may use `true` as needed. <br>However, if proof is added, use `false` to preserve the original signed document. |
+| Parameter | Type   | Description                | **M/O** | **비고** |
+|-----------|--------|----------------------------|---------|---------|
+| didDocument | DIDDocument | 대체할 DID 문서 객체 |    M    | [DIDDocument](#1-diddocument) |
+| needUpdate | Boolean | DID 문서 객체의 updated 속성을 현재 시간으로 업데이트 할 것인지 여부 | M | 대체할 DID 문서 객체가 proof가 추가되지 않은 상태라면 필요에 따라 true를 사용할 수 있다. <br>단, proof가 추가 된 상태라면, 서명 원문 보존을 위해서 false를 사용해야 한다. |
+
 
 ### Returns
 Unit
@@ -250,8 +259,8 @@ didManager.replaceDocument(newDIDDocument, false);
 ## 7. saveDocument
 
 ### Description
-`Saves the "temporary DIDDocument object" to the wallet file and then initializes it.
-If called when there are no changes to the already saved file, i.e., the "temporary DIDDocument object" is null, it does nothing.`
+`“임시 DIDDocument 객체”를 월렛 파일에 저장한 후에 초기화 한다.
+이미 저장된 파일을 대상으로 변경사항이 없는 상태, 즉, “임시 DIDDocument 객체”가 null인 상태에서 호출한다면 아무런 동작을 하지 않는다.`
 
 ### Declaration
 
@@ -263,6 +272,7 @@ fun saveDocument()
 ### Parameters
 
 n/a
+
 
 ### Returns
 
@@ -284,7 +294,7 @@ didManager.saveDocument();
 ## 8. deleteDocument
 
 ### Description
-`Deletes the saved wallet file. After deleting the file, initializes the "temporary DIDDocument object" to null.`
+`저장된 월렛 파일을 삭제한다. 파일 삭제후, “임시 DIDDocument 객체”를 null로 초기화 한다.`
 
 ### Declaration
 
@@ -296,6 +306,7 @@ fun deleteDocument()
 ### Parameters
 
 n/a
+
 
 ### Returns
 
@@ -314,8 +325,8 @@ didManager.deleteDocument();
 ## 9. addVerificationMethod
 
 ### Description
-`Adds public key information to the "temporary DIDDocument object".
-It is mainly used to add new public key information to the saved DID document.`
+`“임시 DIDDocument 객체”에 공개키 정보를 추가한다.
+주로 저장된 DID 문서에 새로운 공개키 정보를 추가하는 경우에 사용한다.`
 
 ### Declaration
 
@@ -326,35 +337,37 @@ fun addVerificationMethod(keyInfo: DIDKeyInfo)
 
 ### Parameters
 
-| Parameter | Type        | Description      | **M/O** | **Notes**                   |
-|-----------|-------------|------------------|---------|-----------------------------|
-| keyInfo   | DIDKeyInfo  | Key ID list      | M       | Refer to [DIDKeyInfo](#2-didkeyinfo) |
+| Parameter | Type   | Description                | **M/O** | **비고** |
+|-----------|--------|----------------------------|---------|---------|
+| keyInfo    | DIDKeyInfo    | 키아이디 리스트 |M|  [DIDKeyInfo](#2-didkeyinfo) |
 
 ### Returns
 
-void
+Unit
+
 
 ### Usage
 ```java
-// KeyManager to generate key pair to add
+// KeyManager 추가할 키쌍생성
 KeyManager<DetailKeyInfo> keyManager = new KeyManager<>("MyWallet", this);
 
 WalletKeyGenRequest keyGenInfo = new WalletKeyGenRequest(
-    "PIN",
-    AlgorithmType.ALGORITHM_TYPE.SECP256R1,
-    StorageOption.STORAGE_OPTION.WALLET,
-    new KeyGenWalletMethodType("password".getBytes())
-);
+                    "PIN",
+                    AlgorithmType.ALGORITHM_TYPE.SECP256R1,
+                    StorageOption.STORAGE_OPTION.WALLET,
+                    new KeyGenWalletMethodType("password".getBytes())
+                    );
 keyManager.generateKey(keyGenInfo);
 List<KeyInfo> keyInfos = keyManager.getKeyInfos(List.of("PIN"));
+
 
 DIDManager<DIDDocument> didManager = new DIDManager<>("MyWallet", this);
 
 DIDKeyInfo didKeyInfo = new DIDKeyInfo(
-    keyInfos.get(0),
-    DIDMethodType.DID_METHOD_TYPE.assertionMethod,
-    did
-);
+                        keyInfos.get(0),
+                        DIDMethodType.DID_METHOD_TYPE.assertionMethod,
+                        did
+                        );
 didManager.addVerificationMethod(didKeyInfo);
 ```
 
@@ -363,8 +376,8 @@ didManager.addVerificationMethod(didKeyInfo);
 ## 10. removeVerificationMethod
 
 ### Description
-`Removes public key information from the "temporary DIDDocument object".
-It is mainly used to remove registered public key information from the saved DID document.`
+`“임시 DIDDocument 객체”에 공개키 정보를 삭제한다.
+주로 저장된 DID 문서에 등록된 공개키 정보를 삭제하는 경우에 사용한다.`
 
 ### Declaration
 
@@ -375,9 +388,10 @@ fun removeVerificationMethod(keyId: String)
 
 ### Parameters
 
-| Parameter | Type   | Description                             | **M/O** | **Notes** |
-|-----------|--------|-----------------------------------------|---------|-----------|
-| keyId     | String | ID of the public key information to remove from the DID document | M       |           |
+| Parameter | Type   | Description                | **M/O** | **비고** |
+|-----------|--------|----------------------------|---------|---------|
+| keyId    | String    | DID 문서에서 삭제할 공개키 정보의 ID |M| |
+
 
 ### Returns
 
@@ -396,8 +410,8 @@ didManager.removeVerificationMethod("PIN");
 ## 11. addService
 
 ### Description
-`Adds service information to the "temporary DIDDocument object".
-It is mainly used to add registered service information to the saved DID document.`
+`“임시 DIDDocument 객체”에 서비스 정보를 추가한다.
+주로 저장된 DID 문서에 등록된 서비스 정보를 추가하는 경우에 사용한다.`
 
 ### Declaration
 
@@ -408,9 +422,10 @@ fun addService(service: Service)
 
 ### Parameters
 
-| Parameter | Type    | Description                      | **M/O** | **Notes**              |
-|-----------|---------|----------------------------------|---------|------------------------|
-| service   | Service | Service information object to specify in the DID document | M       | Refer to [Service](#4-service) |
+| Parameter | Type   | Description                | **M/O** | **비고** |
+|-----------|--------|----------------------------|---------|---------|
+| service    | Service    |  DID 문서에 명시할 서비스 정보 객체 |M|[Service](#4-service)|
+
 
 ### Returns
 
@@ -424,14 +439,13 @@ DIDManager<DIDDocument> didManager = new DIDManager<>("MyWallet", this);
 Service service = new Service("serviceId", DIDServiceType.DID_SERVICE_TYPE.credentialRegistry, List.of("http://serviceEndpoint"));
 didManager.addService(service);
 ```
-
 <br>
 
 ## 12. removeService
 
 ### Description
-`Removes service information from the "temporary DIDDocument object".
-It is mainly used to remove registered service information from the saved DID document.`
+`“임시 DIDDocument 객체”에서 서비스 정보를 삭제한다.
+주로 저장된 DID 문서에 등록된 서비스 정보를 삭제하는 경우에 사용한다.`
 
 ### Declaration
 
@@ -442,9 +456,10 @@ fun removeService(serviceId: String)
 
 ### Parameters
 
-| Parameter | Type   | Description                  | **M/O** | **Notes** |
-|-----------|--------|------------------------------|---------|-----------|
-| serviceId | String | ID of the service to remove from the DID document | M       |           |
+| Parameter | Type   | Description                | **M/O** | **비고** |
+|-----------|--------|----------------------------|---------|---------|
+| serviceId    | String    | DID 문서에서 삭제할 서비스 ID |M| |
+
 
 ### Returns
 
@@ -457,14 +472,13 @@ DIDManager<DIDDocument> didManager = new DIDManager<>("MyWallet", this);
 
 didManager.removeService("serviceId");
 ```
-
 <br>
 
 ## 13. resetChanges
 
 ### Description
-`Resets the "temporary DIDDocument object" to null to discard changes.
-Throws an error if there is no saved DID document file. This can only be used when a saved DID document file exists.`
+`변경사항을 초기화하기 위해 “임시 DIDDocument 객체”를 null로 초기화 한다.
+저장된 DID 문서 파일이 없는 경우에는 에러가 발생한다. 즉, 저장된 DID 문서 파일이 있는 경우에만 사용 가능하다.`
 
 ### Declaration
 
@@ -485,9 +499,8 @@ Unit
 ```java
 DIDManager<DIDDocument> didManager = new DIDManager<>("MyWallet", this);
 
-didManager.resetChanges();
+didManager.resetChanges());
 ```
-
 <br>
 
 # Enumerators
@@ -495,7 +508,7 @@ didManager.resetChanges();
 
 ### Description
 
-`Specifies the purpose of the key registered in the DID document.`
+`DID 문서에 등록되는 키가 어떤 용도인지 명시하는 타입.`
 
 ### Declaration
 
@@ -508,14 +521,13 @@ enum class DID_METHOD_TYPE(val intValue: Int) {
     capabilityDelegation(1 shl 4);
 }
 ```
-
 <br>
 
 ## 2. DID_KEY_TYPE
 
 ### Description
 
-`Signature key type`
+`서명키 타입`
 
 ### Declaration
 
@@ -534,7 +546,7 @@ enum class DID_KEY_TYPE(private val value: String) {
 
 ### Description
 
-`DID document object (provided by DataModel SDK)`
+`DID 문서 객체 (DataModel SDK 제공)`
 [Link]
 
 ### Declaration
@@ -613,7 +625,7 @@ class DIDDocument @JvmOverloads constructor(
 
 ### Description
 
-`Public key information object to register in the DID document.`
+`DID Doc에 등록할 공개키 정보 객체.`
 
 ### Declaration
 
@@ -627,11 +639,11 @@ data class DIDKeyInfo(
 
 ### Property
 
-| Name        | Type                 | Description                                                        | **M/O** | **Note**                                                |
-|-------------|----------------------|--------------------------------------------------------------------|---------|---------------------------------------------------------|
-| keyInfo     | KeyInfo              | Public key information object returned by KeyManager               | M       |                                                         |
-| methodType  | DID_METHOD_TYPE      | Type specifying the purpose of the public key registered in the DID document | M       |                                                         |
-| controller  | String               | DID to register as the controller of the public key in the DID document. If null, the ID of the DID document is used as the controller. | M       |                                                         |
+| Name          | Type               | Description                      | **M/O** | **Note**                    |
+|---------------|--------------------|----------------------------------|---------|-----------------------------|
+| keyInfo       | KeyInfo            | KeyManager가 반환한 공개키 정보 객체   |    M    |                             |
+| methodType    | DID_METHOD_TYPE      | DID 문서에 등록되는 공개키가 어떤 용도인지 명시하는 타입 |  M  |                     |
+| controller    | String           | DID 문서에 등록되는 공개키의 controller로 등록할 DID. nil이면, DID 문서의 id를 controller로 등록한다. |    M    |                     |
 
 <br>
 
@@ -639,7 +651,7 @@ data class DIDKeyInfo(
 
 ### Description
 
-`Key information object retrieved from KeyManager.`[Link]
+`KeyManager에서 조회한 키 정보 객체.`[Link]
 
 ### Declaration
 
@@ -669,7 +681,7 @@ open class KeyInfo : Meta {
 
 ### Description
 
-`Service object in the DID document (provided by DataModel SDK).` [Link]
+`DID 문서의 service 객체.(DataModel SDK 제공)` [Link]
 
 ### Declaration
 

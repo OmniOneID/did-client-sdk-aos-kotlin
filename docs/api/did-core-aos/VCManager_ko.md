@@ -15,23 +15,23 @@ puppeteer:
         fullPage: false
 ---
 
-Android VCManager Core SDK API
+Android VCManager Core API
 ==
 
-- Topic: VCManager
-- Author: Sangjun Kim
-- Date: 2025-03-13
-- Version: v1.0.0
+- 주제: VCManager
+- 작성: Sangjun Kim
+- 일자: 2025-03-13
+- 버전: v1.0.0
 
-| Version | Date       | Changes                   |
-| ------- | ---------- | ------------------------- |
-| v1.0.0  | 2025-03-13 | Initial version           |
+| 버전   | 일자       | 변경 내용                 |
+| ------ | ---------- | -------------------------|
+| v1.0.0 | 2025-03-13 | 초기 작성                 |
 
 
 <div style="page-break-after: always;"></div>
 
-# Table of Contents
-- [APIs](#api-list)
+# 목차
+- [APIs](#api-목록)
     - [1. constructor](#1-constructor)
     - [2. isAnyCredentialsSaved](#2-isanykeysaved)
     - [3. addCredential](#3-addcredential)
@@ -46,11 +46,11 @@ Android VCManager Core SDK API
     - [3. PresentationInfo](#3-presentationinfo)
     - [4. VerifiablePresentation](#4-verifiablepresentation)
 
-# APIs
+# API 목록
 ## 1. Constructor
 
 ### Description
-`VCManager constructor`
+`VCManager costructor`
 
 ### Declaration
 
@@ -58,18 +58,20 @@ Android VCManager Core SDK API
 constructor(fileName: String, context: Context)
 ```
 
+
 ### Parameters
 
-| Parameter | Type    | Description            | **M/O** | **Remarks**                       |
-|-----------|---------|------------------------|---------|-----------------------------------|
-| fileName  | String  | File name              | M       | The file name to save the wallet in VCManager |
-| context   | Context | Context                | M       |                                   |
+| Parameter | Type   | Description                | **M/O** | **비고** |
+|-----------|--------|----------------------------|---------|---------|
+| fileName    | String    | 파일명 |M|VCManager에서 저장할 월렛의 파일명|
+| context    | Context | context |M|  |
 
 ### Returns
 
-| Type      | Description           | **M/O** | **Remarks** |
-|-----------|-----------------------|---------|-------------|
-| VCManager | VCManager object      | M       |             |
+| Type | Description                |**M/O** | **비고** |
+|------|----------------------------|---------|---------|
+| VCManager  | VCManager 객체 |M| |
+
 
 ### Usage
 ```java
@@ -81,7 +83,7 @@ VCManager<VerifiableCredential> vcManager = new VCManager<>("MyWallet", this);
 ## 2. isAnyCredentialsSaved
 
 ### Description
-`Checks if there is at least one saved VC. (Verifies the existence of the VC wallet)`
+`저장된 VC가 1개 이상 있는지 확인한다. (VC 월렛이 존재하는지 확인)` 
 
 ### Declaration
 
@@ -95,16 +97,18 @@ n/a
 
 ### Returns
 
-| Type    | Description          | **M/O** | **Remarks** |
-|---------|----------------------|---------|-------------|
-| Boolean | Presence of saved VC | M       |             |
+| Type | Description                |**M/O** | **비고** |
+|------|----------------------------|---------|---------|
+| Boolean  | 저장된 VC 유무 |M| |
+
+
 
 ### Usage
 ```java
 VCManager<VerifiableCredential> vcManager = new VCManager<>("MyWallet", this);
 
 if(vcManager.isAnyCredentialsSaved()) {
-    vcManager.deleteAllCredentials();
+    vcManager.deleteAllCredentials()
 }
 ```
 
@@ -113,7 +117,7 @@ if(vcManager.isAnyCredentialsSaved()) {
 ## 3. addCredential
 
 ### Description
-`Stores the issued VC.`
+`발급받은 VC를 저장한다.`
 
 ### Declaration
 
@@ -123,10 +127,11 @@ fun addCredentials(verifiableCredential: VerifiableCredential)
 ```
 
 ### Parameters
+| Parameter | Type   | Description                | **M/O** | **비고** |
+|-----------|--------|----------------------------|---------|---------|
+| verifiableCredential| VerifiableCredential| 발급받은 VC 객체 |M| [VerifiableCredential](#1-verifiablecredential)|
 
-| Parameter            | Type                  | Description      | **M/O** | **Remarks**                                  |
-|----------------------|-----------------------|------------------|---------|----------------------------------------------|
-| verifiableCredential | VerifiableCredential  | Issued VC object | M       |[VerifiableCredential](#1-verifiablecredential)|
+
 
 ### Returns
 
@@ -144,7 +149,7 @@ vcManager.addCredentials(verifiableCredential);
 ## 4. getCredentials
 
 ### Description
-`Returns all VCs that match the given IDs.`
+`ID와 일치하는 VC를 모두 반환한다.`
 
 ### Declaration
 
@@ -154,22 +159,23 @@ fun getCredentials(identifiers: List<String>): List<VerifiableCredential>
 ```
 
 ### Parameters
+| Parameter | Type   | Description                | **M/O** | **비고** |
+|-----------|--------|----------------------------|---------|---------|
+| identifiers    | List&lt;String&gt; | 반환받을 VC ID 리스트 |M| |
 
-| Parameter    | Type                  | Description                 | **M/O** | **Remarks** |
-|--------------|-----------------------|-----------------------------|---------|-------------|
-| identifiers  | List&lt;String&gt;    | List of VC IDs to retrieve  | M       |             |
 
 ### Returns
+| Type | Description                |**M/O** | **비고** |
+|------|----------------------------|---------|---------|
+| List&lt;VerifiableCredential&gt;  | ID와 일치하는 VC 리스트 |M| [VerifiableCredential](#1-verifiablecredential)|
 
-| Type                                | Description                     | **M/O** | **Remarks**                                  |
-|-------------------------------------|---------------------------------|---------|----------------------------------------------|
-| List&lt;VerifiableCredential&gt;    | List of VCs that match the IDs  | M       | [VerifiableCredential](#1-verifiablecredential) |
+
 
 ### Usage
 ```java
 VCManager<VerifiableCredential> vcManager = new VCManager<>("MyWallet", this);
 
-List<VerifiableCredential> vcList = vcManager.getCredentials(List.of("credentialId", "credentialId2"));
+List<VerifiableCredential> vcList = vcManager.getCredentials(List.of("credentialId","credentialId2"));    
 ```
 
 <br>
@@ -177,7 +183,7 @@ List<VerifiableCredential> vcList = vcManager.getCredentials(List.of("credential
 ## 5. getAllCredentials
 
 ### Description
-`Returns all stored VCs.`
+`저장된 VC를 모두 반환한다. `
 
 ### Declaration
 
@@ -192,15 +198,18 @@ n/a
 
 ### Returns
 
-| Type                                | Description             | **M/O** | **Remarks**                                  |
-|-------------------------------------|-------------------------|---------|----------------------------------------------|
-| List&lt;VerifiableCredential&gt;    | List of all stored VCs  | M       | [Link](#1-verifiablecredential)|
+
+| Type | Description                |**M/O** | **비고** |
+|------|----------------------------|---------|---------|
+| List&lt;VerifiableCredential&gt;  | 저장된 모든 VC 리스트  |M| [Link](#1-verifiablecredential)|
+
+
 
 ### Usage
 ```java
 VCManager<VerifiableCredential> vcManager = new VCManager<>("MyWallet", this);
 
-List<VerifiableCredential> vcList = vcManager.getAllCredentials();
+List<VerifiableCredential> vcList = vcManager.getAllCredentials();    
 ```
 
 <br>
@@ -208,7 +217,7 @@ List<VerifiableCredential> vcList = vcManager.getAllCredentials();
 ## 6. deleteCredentials
 
 ### Description
-`Deletes all VCs that match the given IDs. If no VCs remain after deletion, the file is deleted.`
+`ID가 일치하는 VC를 모두 삭제한다. VC 삭제 후, 남은 VC가 없으면 파일을 삭제한다.`
 
 ### Declaration
 
@@ -218,10 +227,10 @@ fun deleteCredentials(identifiers: List<String>)
 ```
 
 ### Parameters
+| Parameter | Type   | Description                | **M/O** | **비고** |
+|-----------|--------|----------------------------|---------|---------|
+| identifiers    | List&lt;String&gt; | 삭제할 VC ID 리스트 |M| |
 
-| Parameter    | Type                  | Description                 | **M/O** | **Remarks** |
-|--------------|-----------------------|-----------------------------|---------|-------------|
-| identifiers  | List&lt;String&gt;    | List of VC IDs to delete    | M       |             |
 
 ### Returns
 Unit
@@ -230,7 +239,8 @@ Unit
 ```java
 VCManager<VerifiableCredential> vcManager = new VCManager<>("MyWallet", this);
 
-vcManager.deleteCredentials(List.of("credentialId", "credentialId2"));
+vcManager.deleteCredentials(List.of("credentialId","credentialId2"));
+                
 ```
 
 <br>
@@ -238,7 +248,7 @@ vcManager.deleteCredentials(List.of("credentialId", "credentialId2"));
 ## 7. deleteAllCredentials
 
 ### Description
-`Deletes all stored VCs. (Deletes the wallet file)`
+`저장된 VC를 모두 삭제한다. (월렛 파일 삭제)`
 
 ### Declaration
 
@@ -250,6 +260,7 @@ fun deleteAllCredentials()
 ### Parameters
 
 n/a
+
 
 ### Returns
 
@@ -268,7 +279,7 @@ vcManager.deleteAllCredentials();
 ## 8. makePresentation
 
 ### Description
-`Returns a VP object without proof.`
+`Proof가 없는 VP 객체를 리턴한다.`
 
 ### Declaration
 
@@ -278,17 +289,17 @@ fun makePresentation(claimInfos: List<ClaimInfo>, presentationInfo: Presentation
 ```
 
 ### Parameters
+| Parameter | Type   | Description                | **M/O** | **비고** |
+|-----------|--------|----------------------------|---------|---------|
+| claimInfos    | List&lt;ClaimInfo&gt; | VP 생성에 사용될 VC 정보 리스트 |M| |
+| presentationInfo    | PresentationInfo | VP 생성에 사용될 VC 자체 정보 |M| |
 
-| Parameter         | Type                       | Description                         | **M/O** | **Remarks** |
-|-------------------|----------------------------|-------------------------------------|---------|-------------|
-| claimInfos        | List&lt;ClaimInfo&gt;      | List of VC information for VP creation | M       |             |
-| presentationInfo  | PresentationInfo           | Information about the VC itself for VP creation | M       |             |
 
 ### Returns
+| Type | Description                |**M/O** | **비고** |
+|------|----------------------------|---------|---------|
+| VerifiablePresentation | Proof가 없는 VP 객체 |M| [VerifiablePresentation](#4-verifiablepresentation)|
 
-| Type                    | Description                    | **M/O** | **Remarks**                                  |
-|-------------------------|--------------------------------|---------|----------------------------------------------|
-| VerifiablePresentation  | VP object without proof        | M       | [VerifiablePresentation](#4-verifiablepresentation) |
 
 ### Usage
 ```java
@@ -300,7 +311,6 @@ ClaimInfo claimInfo = new ClaimInfo(
                         List.of("org.iso.18013.5.family_name", "org.iso.18013.5.birth_date")
                         );
 claimInfos.add(claimInfo);
-
 PresentationInfo presentationInfo = new PresentationInfo(
                         "Holder DID",
                         "valid from date",
@@ -320,7 +330,7 @@ VerifiablePresentation vp = vcManager.makePresentation(claimInfos, presentationI
 
 ### Description
 
-`VC object (provided by DataModel SDK)`
+`VC 객체 (DataModel SDK 제공)`
 [Link]
 
 ### Declaration
@@ -392,7 +402,7 @@ data class VerifiableCredential @JvmOverloads constructor(
 
 ### Description
 
-`VC information used for VP creation. Retrieves the VC corresponding to the credentialId from the wallet and uses only the claim information specified in claimCodes to create the VP.`
+`VP 생성에 사용될 VC 정보. 월렛에서 credentialId에 해당하는 VC를 꺼내 claimCodes에 명시된 클레임 정보만 이용해 VP를 생성하는데 이용한다.`
 
 ### Declaration
 
@@ -410,19 +420,18 @@ data class ClaimInfo(
 
 ### Property
 
-| Name          | Type                  | Description     | **M/O** | **Note** |
-|---------------|-----------------------|-----------------|---------|----------|
-| credentialId  | String                | ID of the VC    | M       |          |
-| claimCodes    | List&lt;String&gt;    | List of claim codes | M   |          |
+| Name          | Type               | Description                      | **M/O** | **Note**   
+|-----------|--------|----------------------------|---------|---------|
+| credentialId    | String | VC의 ID |M| |
+| claimCodes    | List&lt;String&gt; | 클레임 코드 리스트 |M| |
 
 <br>
-
 
 ## 3. PresentationInfo
 
 ### Description
 
-`Information about the VP itself used for VP creation`
+`VP 생성에 사용될 VP 자체 정보`
 
 ### Declaration
 
@@ -448,21 +457,20 @@ data class PresentationInfo(
 
 ### Property
 
-| Name          | Type                      | Description            | **M/O** | **Note** |
-|---------------|---------------------------|------------------------|---------|----------|
-| holder        | String                    | DID of the VC holder   | M       |          |
-| validFrom     | String                    | VC validity start date | M       |          |
-| validUntil    | String                    | VC validity end date   | M       |          |
-| verifierNonce | String                    | Verifier nonce         | M       |          |
+| Name          | Type                      | Description                     | **M/O** | **Note**                           |
+|---------------|---------------------------|---------------------------------|---------|------------------------------------|
+| holder  | String | VC 소유자의 DID |    M    | |
+| validFrom  | String    | VC 유효기간 시작 일시  |    M    |   |
+| validUntil  | String    | VC 유효기간 종료 일시  |    M    |   |
+| verifierNonce  | String    | verifier nonce  |    M    |   |
 
 <br>
-
 
 ## 4. VerifiablePresentation
 
 ### Description
 
-`VP object (provided by DataModel SDK)`
+`VP 객체 (DataModel SDK 제공)`
 [Link]
 
 ### Declaration

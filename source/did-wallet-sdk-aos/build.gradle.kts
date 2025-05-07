@@ -30,7 +30,7 @@ android {
     }
 }
 
-val customVersion = "1.0.0"
+val customVersion = "1.1.0"
 
 tasks.register<Copy>("exportJar") {
     from("build/intermediates/aar_main_jar/debug/classes.jar") // 최신 AGP 기준

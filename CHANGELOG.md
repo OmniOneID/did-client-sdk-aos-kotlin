@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.1.0 (2025-04-30)
+
+### 🚀 New Features
+- Unified SDK architecture
+    - Merged Core SDK, Utility SDK, DataModel SDK, Communication SDK, and Wallet SDK into a single Wallet SDK module for streamlined usage and maintenance.
+
 ## v1.0.0 (2024-10-18)
 
 ### 🚀 New Features

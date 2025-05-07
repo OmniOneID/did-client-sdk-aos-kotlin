@@ -15,23 +15,22 @@ puppeteer:
         fullPage: false
 ---
 
-Android DataModel SDK
+Android DataModel
 ==
 
-- 주제: DataModel
-- 작성: Sangjun Kim
-- 일자: 2025-03-14
-- 버전: v1.0.0
+- Topic: DataModel
+- Author: Sangjun Kim
+- Date: 2025-03-14
+- Version: v1.0.0
 
-| 버전   | 일자       | 변경 내용                 |
-| ------ | ---------- | -------------------------|
-| v1.0.0 | 2025-03-14 | 초기 작성                 |
-
+| Version | Date       | Changes                    |
+| ------- | ---------- | -------------------------- |
+| v1.0.0  | 2025-03-14 | Initial version            |
 
 <div style="page-break-after: always;"></div>
 
 
-# 목차
+# Contents
 - [CoreVo](#corevo)
     - [1. DIDDocument](#1-diddocument)
         - [1.1. VerificationMethod](#11-verificationmethod)
@@ -140,7 +139,7 @@ Android DataModel SDK
 
 ### Description
 
-`탈중앙 식별자를 위한 문서`
+`Document for Decentralized IDs`
 
 ### Declaration
 
@@ -216,22 +215,22 @@ class DIDDocument @JvmOverloads constructor(
 
 | Name                 | Type                 | Description                            | **M/O** | **Note**                    |
 |----------------------|----------------------|----------------------------------------|---------|-----------------------------|
-| context              | List\<String>             | JSON-LD context                        |    M    |   | 
-| id                   | String               | DID 소유자의 did                        |    M    |   | 
-| controller           | String               | DID controller의 did                   |    M    |   | 
-| verificationMethod   | List\<VerificationMethod> | 공개키가 포함된 DID 키 목록                   |    M    | [VerificationMethod](#11-verificationmethod) | 
-| assertionMethod      | List\<String>             | Assertion 키 이름 목록             |    O    |   | 
-| authentication       | List\<String>             | Authentication 키 이름 목록         |    O    |   | 
-| keyAgreement         | List\<String>             | Key Agreement 키 이름 목록         |    O    |   | 
-| capabilityInvocation | List\<String>             | Capability Invocation 키 이름 목록  |    O    |   | 
-| capabilityDelegation | List\<String>             | Capability Delegation 키 이름 목록  |    O    |   | 
-| service              | List\<Service>            | 서비스 목록                        |    O    |[Service](#12-service)  | 
-| created              |  String              | 생성 시간                            |    M    | | 
-| updated              |  String              | 갱신 시간                            |    M    | | 
-| versionId            |  String              | DID 버전 id                         |    M    | | 
-| deactivated          |  Boolean                | True: 비활성화, False: 활성화            |    M    |   | 
-| proof                |  Proof               | 소유자 proof                            |    O    |[Proof](#4-proof)| 
-| proofs               |  [Proof]             | 소유자 proof 목록                    |    O    |[Proof](#4-proof)| 
+| context              | List\<String>        | JSON-LD context                        |    M    |                             | 
+| id                   | String               | DID owner's did                        |    M    |                             | 
+| controller           | String               | DID controller's did                   |    M    |                             | 
+| verificationMethod   | List\<VerificationMethod> | List of DID keys containing public keys |    M    | [VerificationMethod](#11-verificationmethod) | 
+| assertionMethod      | List\<String>        | List of assertion key names            |    O    |                             | 
+| authentication       | List\<String>        | List of authentication key names       |    O    |                             | 
+| keyAgreement         | List\<String>        | List of key agreement key names        |    O    |                             | 
+| capabilityInvocation | List\<String>        | List of capability invocation key names|    O    |                             | 
+| capabilityDelegation | List\<String>        | List of capability delegation key names|    O    |                             | 
+| service              | List\<Service>       | List of services                       |    O    | [Service](#12-service)      | 
+| created              | String               | Creation time                          |    M    |                             | 
+| updated              | String               | Update time                            |    M    |                             | 
+| versionId            | String               | DID version id                         |    M    |                             | 
+| deactivated          | Boolean                 | True: Deactivated, False: Activated    |    M    |                             | 
+| proof                | Proof                | Owner's proof                          |    O    | [Proof](#4-proof)           | 
+| proofs               | [Proof]              | List of owner's proofs                 |    O    | [Proof](#4-proof)           | 
 
 <br>
 
@@ -239,7 +238,7 @@ class DIDDocument @JvmOverloads constructor(
 
 ### Description
 
-`공개키가 포함된 DID 키 목록`
+`List of DID keys containing public keys`
 
 ### Declaration
 
@@ -270,16 +269,15 @@ data class VerificationMethod(
     var status: String? = null
 )
 ```
-
 ### Property
 
-| Name               | Type       | Description                            | **M/O** | **Note**              |
-|--------------------|------------|----------------------------------------|---------|-----------------------|
-| id                 | String     | 키 이름                               |    M    |                       | 
-| type               | DID_KEY_TYPE | 키 종류                              |    M    | [DID_KEY_TYPE](#1-did_key_type) | 
-| controller         | String     | 키 controller의 DID                   |    M    |                       | 
-| publicKeyMultibase | String     | 공개키                       |    M    | 멀티베이스 인코딩됨  | 
-| authType           | AUTH_TYPE   | 키 사용을 위한 인증 방법     |    M    | [AUTH_TYPE](#5-auth_type) | 
+| Name               | Type          | Description                            | **M/O** | **Note**                     |
+|--------------------|---------------|----------------------------------------|---------|------------------------------|
+| id                 | String        | Key name                               |    M    |                              | 
+| type               | DID_KEY_TYPE  | Key type                               |    M    | [DID_KEY_TYPE](#1-did_key_type) | 
+| controller         | String        | Key controller's DID                   |    M    |                              | 
+| publicKeyMultibase | String        | Public key                             |    M    | Multibase encoded            | 
+| authType           | AUTH_TYPE     | Authentication method for key usage    |    M    | [AUTH_TYPE](#5-auth_type)    | 
 
 <br>
 
@@ -287,7 +285,7 @@ data class VerificationMethod(
 
 ### Description
 
-`서비스 목록`
+`List of services`
 
 ### Declaration
 
@@ -309,11 +307,11 @@ data class Service(
 
 ### Property
 
-| Name            | Type           | Description                | **M/O** | **Note**                  |
-|-----------------|----------------|----------------------------|---------|---------------------------|
-| id              | String         | 서비스 id                 |    M    |                           | 
-| type            | DID_SERVICE_TYPE | 서비스 종류               |    M    | [DID_SERVICE_TYPE](#2-did_service_type)| 
-| serviceEndpoint | List\<String>       | 서비스로의 URL 목록 |    M    |                           | 
+| Name            | Type               | Description                        | **M/O** | **Note**                                 |
+|-----------------|--------------------|------------------------------------|---------|------------------------------------------|
+| id              | String             | Service id                         |    M    |                                          | 
+| type            | DID_SERVICE_TYPE   | Service type                       |    M    | [DID_SERVICE_TYPE](#2-did_service_type)  | 
+| serviceEndpoint | List\<String>      | List of URLs to the service        |    M    |                                          | 
 
 <br>
 
@@ -321,7 +319,7 @@ data class Service(
 
 ### Description
 
-`탈중앙화된 전자 인증서, 이하 VC`
+`Decentralized electronic certificate, hereafter referred to as VC`
 
 ### Declaration
 
@@ -387,22 +385,22 @@ data class VerifiableCredential @JvmOverloads constructor(
 
 ### Property
 
-| Name              | Type              | Description                      | **M/O** | **Note**                    |
-|-------------------|-------------------|----------------------------------|---------|-----------------------------|
-| context           | List\<String>          | JSON-LD context                  |    M    |                             |
-| id                | String            | VC id                            |    M    |                             |
-| type              | List\<String>          | VC 종류 목록                 |    M    |                             |
-| issuer            | Issuer            | 발급처 정보               |    M    | [Issuer](#21-issuer)         |
-| issuanceDate      | String            | 발급 시간                |    M    |                             |
-| validFrom         | String            | VC의 유효 시작 시간  |    M    |                             |
-| validUntil        | String            | VC의 만료 시간 |    M    |                             |
-| encoding          | String            | VC 인코딩 종류                 |    M    | Default(UTF-8)              |
-| formatVersion     | String            | VC 포맷 버전                |    M    |                             |
-| language          | String            | VC 언어 코드                 |    M    |                             |
-| evidence          | List\<Evidence>        | 증거                           |    M    | [Evidence](#22-evidence) |
-| credentialSchema  | CredentialSchema  | Credential schema                |    M    | [CredentialSchema](#23-credentialschema)                            |
-| credentialSubject | CredentialSubject | Credential subject               |    M    | [CredentialSubject](#24-credentialsubject)                            |
-| proof             | VCProof           | 발급처 proof                     |    M    | [VCProof](#41-vcproof)                            |
+| Name              | Type                  | Description                        | **M/O** | **Note**                                      |
+|-------------------|-----------------------|------------------------------------|---------|-----------------------------------------------|
+| context           | List\<String>         | JSON-LD context                    |    M    |                                               |
+| id                | String                | VC id                              |    M    |                                               |
+| type              | List\<String>         | List of VC types                   |    M    |                                               |
+| issuer            | Issuer                | Issuer information                 |    M    | [Issuer](#21-issuer)                          |
+| issuanceDate      | String                | Issuance date                      |    M    |                                               |
+| validFrom         | String                | Start date of VC validity          |    M    |                                               |
+| validUntil        | String                | Expiration date of VC              |    M    |                                               |
+| encoding          | String                | Encoding type of VC                |    M    | Default (UTF-8)                               |
+| formatVersion     | String                | Format version of VC               |    M    |                                               |
+| language          | String                | Language code of VC                |    M    |                                               |
+| evidence          | List\<Evidence>       | Evidence                           |    M    | [Evidence](#22-evidence)                      |
+| credentialSchema  | CredentialSchema      | Credential schema                  |    M    | [CredentialSchema](#23-credentialschema)      |
+| credentialSubject | CredentialSubject     | Credential subject                 |    M    | [CredentialSubject](#24-credentialsubject)    |
+| proof             | VCProof               | Issuer's proof                     |    M    | [VCProof](#41-vcproof)                        |
 
 <br>
 
@@ -410,7 +408,7 @@ data class VerifiableCredential @JvmOverloads constructor(
 
 ### Description
 
-`이슈어 정보`
+`Issuer information`
 
 ### Declaration
 
@@ -430,8 +428,8 @@ data class Issuer(
 
 | Name      | Type   | Description                       | **M/O** | **Note**                 |
 |-----------|--------|-----------------------------------|---------|--------------------------|
-| id        | String | 이슈어 DID                      |    M    |                          |
-| name      | String | 이슈어 name                     |    O    |                          |
+| id        | String | Issuer DID                        |    M    |                          |
+| name      | String | Issuer name                       |    O    |                          |
 
 <br>
 
@@ -439,7 +437,7 @@ data class Issuer(
 
 ### Description
 
-`증거 서류 확인`
+`Verification of evidence documents`
 
 ### Declaration
 
@@ -477,14 +475,14 @@ data class Evidence(
 
 ## Property
 
-| Name             | Type         | Description                      | **M/O** | **Note**                 |
-|------------------|--------------|----------------------------------|---------|--------------------------|
-| id              | String       | 증거 정보의 URL                      |    O    |                          |
-| type             | EVIDENCE_TYPE | 증거 종류                            |    M    | [EVIDENCE_TYPE](#6-evidence_type) |
-| verifier         | String       | 증거 검증처                          |    M    |                          |
-| evidenceDocument | String       | 증거 문서 이름                           |    M    |                          |
-| subjectPresence  | PRESENCE     | 주체 표현 종류                       |    M    | [PRESENCE](#7-presence)        |
-| documentPresence | PRESENCE     | 문서 표현 종류                         |    M    | [PRESENCE](#7-presence)   |
+| Name             | Type          | Description                      | **M/O** | **Note**                           |
+|------------------|---------------|----------------------------------|---------|------------------------------------|
+| id              | String        | URL of the evidence information  |    O    |                                    |
+| type             | EVIDENCE_TYPE | Type of evidence                 |    M    | [EVIDENCE_TYPE](#6-evidence_type)  |
+| verifier         | String        | Evidence verifier                |    M    |                                    |
+| evidenceDocument | String        | Name of the evidence document    |    M    |                                    |
+| subjectPresence  | PRESENCE      | Type of subject presence         |    M    | [PRESENCE](#7-presence)            |
+| documentPresence | PRESENCE      | Type of document presence        |    M    | [PRESENCE](#7-presence)            |
 
 <br>
 
@@ -510,10 +508,10 @@ data class CredentialSchema(
 
 ## Property
 
-| Name      | Type                 | Description           | **M/O** | **Note**                 |
-|-----------|----------------------|-----------------------|---------|--------------------------|
-| id        | String               |  VC schema URL    |    M    |                          |
-| type      | CREDENTIAL_SCHEMA_TYPE | VC Schema 포맷 종류 |    M    |  [CREDENTIAL_SCHEMA_TYPE](#16-credential_schema_type)   |
+| Name      | Type                     | Description            | **M/O** | **Note**                                      |
+|-----------|--------------------------|------------------------|---------|-----------------------------------------------|
+| id        | String                   | VC schema URL          |    M    |                                               |
+| type      | CREDENTIAL_SCHEMA_TYPE   | VC schema format type  |    M    | [CREDENTIAL_SCHEMA_TYPE](#16-credential_schema_type) |
 
 <br>
 
@@ -539,10 +537,10 @@ data class CredentialSubject(
 
 ## Property
 
-| Name      | Type    | Description   | **M/O** | **Note**                 |
-|-----------|---------|---------------|---------|--------------------------|
-| id        | String  | 주체 DID   |    M    |                          |
-| claims    | List\<Claim> | Claim 목록 |    M    | [Claim](#25-claim)           |
+| Name      | Type          | Description        | **M/O** | **Note**                  |
+|-----------|---------------|--------------------|---------|---------------------------|
+| id        | String        | Subject DID        |    M    |                           |
+| claims    | List\<Claim>  | List of claims     |    M    | [Claim](#25-claim)        |
 
 <br>
 
@@ -550,7 +548,7 @@ data class CredentialSubject(
 
 ### Description
 
-`주체 정보`
+`Subject information`
 
 ### Declaration
 
@@ -596,17 +594,17 @@ data class Claim(
 
 ## Property
 
-| Name      | Type                         | Description                  | **M/O** | **Note**                 |
-|-----------|------------------------------|------------------------------|---------|--------------------------|
-| code      | String                       | Claim 코드                   |    M    |                          |
-| caption   | String                       | Claim 이름                   |    M    |                          |
-| value     | String                       | Claim 값                  |    M    |                          |
-| type      | CLAIM_TYPE                    | Claim 종류                   |    M    | [CLAIM_TYPE](#11-claim_type)         |
-| format    | CLAIM_FORMAT                  | Claim 포맷                 |    M    | [CLAIM_FORMAT](#12-claim_format)           |
-| hideValue | Boolean                        | 값 숨김                   |    O    | Default(false)           |
-| location  | LOCATION                     | 값 위치                   |    O    | Default(inline) <br> [LOCATION](#12-location) |
-| digestSRI | String                       | Digest Subresource Integrity |    O    |                          |
-| i18n      |Map\<String, Internationalization> | 국제화                  |    O    | [Internationalization](#26-internationalization) |
+| Name      | Type                              | Description                    | **M/O** | **Note**                                  |
+|-----------|-----------------------------------|--------------------------------|---------|-------------------------------------------|
+| code      | String                            | Claim code                     |    M    |                                           |
+| caption   | String                            | Claim name                     |    M    |                                           |
+| value     | String                            | Claim value                    |    M    |                                           |
+| type      | CLAIM_TYPE                        | Claim type                     |    M    | [CLAIM_TYPE](#11-claim_type)              |
+| format    | CLAIM_FORMAT                      | Claim format                   |    M    | [CLAIM_FORMAT](#12-claim_format)          |
+| hideValue | Boolean                              | Hide value                     |    O    | Default (false)                           |
+| location  | LOCATION                          | Value location                 |    O    | Default (inline) <br> [LOCATION](#12-location) |
+| digestSRI | String                            | Digest Subresource Integrity   |    O    |                                           |
+| i18n      | Map\<String, Internationalization> | Internationalization           |    O   | [Internationalization](#26-internationalization) |
 
 <br>
 
@@ -614,7 +612,7 @@ data class Claim(
 
 ### Description
 
-`국제화`
+`Internationalization`
 
 ### Declaration
 
@@ -628,11 +626,11 @@ data class Internationalization(
 
 ## Property
 
-| Name      | Type   | Description                  | **M/O** | **Note**                 |
-|-----------|--------|------------------------------|---------|--------------------------|
-| caption   | String | Claim 이름                   |    M    |                          |
-| value     | String | Claim 값                  |    O    |                          |
-| digestSRI | String | Digest Subresource Integrity |    O    | Claim 값의 해시값      |
+| Name      | Type   | Description                  | **M/O** | **Note**                              |
+|-----------|--------|------------------------------|---------|---------------------------------------|
+| caption   | String | Claim name                   |    M    |                                       |
+| value     | String | Claim value                  |    O    |                                       |
+| digestSRI | String | Digest Subresource Integrity |    O    | Hash of claim value                   |
 
 <br>
 
@@ -640,7 +638,7 @@ data class Internationalization(
 
 ### Description
 
-`주체 서명된 VC 목록, 이하 VP`
+`List of VCs signed by the subject, hereafter referred to as VP`
 
 ### Declaration
 
@@ -690,18 +688,18 @@ data class VerifiablePresentation @JvmOverloads constructor(
 
 ### Property
 
-| Name                 | Type                   | Description                      | **M/O** | **Note**                 |
-|----------------------|------------------------|----------------------------------|---------|--------------------------|
-| context              | List\<String>               | JSON-LD context                  |    M    |                          |
-| id                   | String                 | VP ID                            |    M    |                          |
-| type                 | List\<String>               | VP 종류 목록                  |    M    |                          |
-| holder               | String                 | 소유자 DID                       |    M    |                          |
-| validFrom            | String                 | VP의 유효 시작 시간            |    M    |                          |
-| validUntil           | String                 | VP의 만료 시간                 |    M    |                          |
-| verifierNonce        | String                 | 검증자 nonce                   |    M    |                          |
-| verifiableCredential | List\<VerifiableCredential> | VC 목록                       |    M    | [VerifiableCredential](#2-verifiablecredential)   |
-| proof                | Proof                  | 소유자 proof                      |    O    | [Proof](#4-proof) | 
-| proofs               | List\<Proof>                | 소유자 proof 목록             |    O    | [Proof](#4-proof)    | 
+| Name                 | Type                        | Description                      | **M/O** | **Note**                                       |
+|----------------------|-----------------------------|----------------------------------|---------|-----------------------------------------------|
+| context              | List\<String>               | JSON-LD context                  |    M    |                                               |
+| id                   | String                      | VP ID                            |    M    |                                               |
+| type                 | List\<String>               | List of VP types                 |    M    |                                               |
+| holder               | String                      | Holder's DID                     |    M    |                                               |
+| validFrom            | String                      | Start date of VP validity        |    M    |                                               |
+| validUntil           | String                      | Expiration date of VP            |    M    |                                               |
+| verifierNonce        | String                      | Verifier nonce                   |    M    |                                               |
+| verifiableCredential | List\<VerifiableCredential> | List of VCs                      |    M    | [VerifiableCredential](#2-verifiablecredential) |
+| proof                | Proof                       | Holder's proof                   |    O    | [Proof](#4-proof)                             | 
+| proofs               | List\<Proof>                | List of holder's proofs          |    O    | [Proof](#4-proof)                             | 
 
 <br>
 
@@ -709,7 +707,7 @@ data class VerifiablePresentation @JvmOverloads constructor(
 
 ### Description
 
-`소유자 proof`
+`Holder's proof`
 
 ### Declaration
 
@@ -725,13 +723,13 @@ open class Proof @JvmOverloads constructor(
 
 ### Property
 
-| Name               | Type         | Description                      | **M/O** | **Note**                 |
-|--------------------|--------------|----------------------------------|---------|--------------------------|
-| created            | String       | 생성시간                 |    M    |    | 
-| proofPurpose       | PROOF_PURPOSE | Proof 목적                    |    M    | [PROOF_PURPOSE](#3-proof_purpose) | 
-| verificationMethod | String       | Proof 서명에 사용된 Key URL |    M    |                          | 
-| type               | PROOF_TYPE    | Proof 종류                       |    O    | [PROOF_TYPE](#4-proof_type)   |
-| proofValue         | String       | 서명값                         |    O    |                          |
+| Name               | Type          | Description                      | **M/O** | **Note**                              |
+|--------------------|---------------|----------------------------------|---------|---------------------------------------|
+| created            | String        | Creation time                    |    M    |                                       | 
+| proofPurpose       | PROOF_PURPOSE | Purpose of the proof             |    M    | [PROOF_PURPOSE](#3-proof_purpose)     | 
+| verificationMethod | String        | Key URL used for the proof       |    M    |                                       | 
+| type               | PROOF_TYPE    | Type of the proof                |    O    | [PROOF_TYPE](#4-proof_type)           |
+| proofValue         | String        | Signature value                  |    O    |                                       |
 
 <br>
 
@@ -739,7 +737,7 @@ open class Proof @JvmOverloads constructor(
 
 ### Description
 
-`발급처 proof`
+`Issuer's proof`
 
 ### Declaration
 
@@ -751,14 +749,14 @@ data class VCProof(
 
 ### Property
 
-| Name               | Type         | Description                      | **M/O** | **Note**                 |
-|--------------------|--------------|----------------------------------|---------|--------------------------|
-| created            | String       | 생성 시간                |    M    |        | 
-| proofPurpose       | PROOF_PURPOSE | Proof 목적                    |    M    | [PROOF_PURPOSE](#3-proof_purpose)  | 
-| verificationMethod | String       | Proof 서명에 사용된 Key URL |    M    |                          | 
-| type               | PROOF_TYPE    | Proof 종류                       |    O    | [PROOF_TYPE](#4-proof_type)   |
-| proofValue         | String       | 서명값                  |    O    |                          |
-| proofValueList     | List\<String>     | 서명값 목록             |    O    |                          |
+| Name               | Type          | Description                      | **M/O** | **Note**                              |
+|--------------------|---------------|----------------------------------|---------|---------------------------------------|
+| created            | String        | Creation time                    |    M    |                                       | 
+| proofPurpose       | PROOF_PURPOSE | Purpose of the proof             |    M    | [PROOF_PURPOSE](#3-proof_purpose)     | 
+| verificationMethod | String        | Key URL used for the proof       |    M    |                                       | 
+| type               | PROOF_TYPE    | Type of the proof                |    O    | [PROOF_TYPE](#4-proof_type)           |
+| proofValue         | String        | Signature value                  |    O    |                                       |
+| proofValueList     | List\<String> | List of signature values         |    O    |                                       |
 
 <br>
 
@@ -768,7 +766,7 @@ data class VCProof(
 
 ### Description
 
-`발급 프로파일`
+`Issuer profile`
 
 ### Declaration
 
@@ -818,17 +816,17 @@ class IssueProfile(
 
 ### Property
 
-| Name        | Type        | Description           | **M/O** | **Note**                 |
-|-------------|-------------|-----------------------|---------|--------------------------|
-| id          | String      | 프로파일 ID            |    M    |                          |
-| type        | PROFILE_TYPE | 프로파일 종류          |    M    | [PROFILE_TYPE](#8-profile_type)    |
-| title       | String      | 프로파일 타이틀         |    M    |                          |
-| description | String      | 프로파일 설명   |    O    |                          |
-| logo        | LogoImage   | 로고 이미지            |    O    | [LogoImage](#53-logoimage)         |
-| encoding    | String      | 프로파일 인코딩 종류 |    M    |                          |
-| language    | String      | 프로파일 언어 코드 |    M    |                          |
-| profile     | Profile     | 프로파일 컨텐츠      |    M    | [Profle](#511-profile)           |
-| proof       | Proof       | 소유자 proof           |    O    | [Proof](#4-proof)      |
+| Name        | Type          | Description           | **M/O** | **Note**                              |
+|-------------|---------------|-----------------------|---------|---------------------------------------|
+| id          | String        | Profile ID            |    M    |                                       |
+| type        | PROFILE_TYPE  | Profile type          |    M    | [PROFILE_TYPE](#8-profile_type)       |
+| title       | String        | Profile title         |    M    |                                       |
+| description | String        | Profile description   |    O    |                                       |
+| logo        | LogoImage     | Logo image            |    O    | [LogoImage](#53-logoimage)            |
+| encoding    | String        | Profile encoding type |    M    |                                       |
+| language    | String        | Profile language code |    M    |                                       |
+| profile     | Profile       | Profile content       |    M    | [Profile](#511-profile)               |
+| proof       | Proof         | Holder's proof        |    O    | [Proof](#4-proof)                     |
 
 <br>
 
@@ -836,7 +834,7 @@ class IssueProfile(
 
 ### Description
 
-`프로파일 컨텐츠`
+`Profile content`
 
 ### Declaration
 
@@ -853,11 +851,11 @@ data class Profile(
 
 ### Property
 
-| Name             | Type             | Description           | **M/O** | **Note**                 |
-|------------------|------------------|-----------------------|---------|--------------------------|
-| issuer           | ProviderDetail   | 발급처 정보    |    M    | [ProviderDetail](#54-providerdetail)   |
-| credentialSchema | CredentialSchema | VC schema 정보 |    M    | [CredentialSchema](#5111-credentialschema)          |
-| process          | Process          | 발급 절차       |    M    |  [Process](#5112-process)     |
+| Name             | Type               | Description          | **M/O** | **Note**                              |
+|------------------|--------------------|----------------------|---------|---------------------------------------|
+| issuer           | ProviderDetail     | Issuer information   |    M    | [ProviderDetail](#54-providerdetail)  |
+| credentialSchema | CredentialSchema   | VC schema information|    M    | [CredentialSchema](#5111-credentialschema) |
+| process          | Process            | Issuance process     |    M    | [Process](#5112-process)              |
 
 <br>
 
@@ -865,7 +863,7 @@ data class Profile(
 
 ### Description
 
-`VC schema 정보`
+`VC schema information`
 
 ### Declaration
 
@@ -882,11 +880,11 @@ data class CredentialSchema(
 
 ### Property
 
-| Name  | Type                 | Description           | **M/O** | **Note**                 |
-|-------|----------------------|-----------------------|---------|--------------------------|
-| id    | String               | VC schema URL     |    M    |                          |
-| type  | CREDENTIAL_SCHEMA_TYPE | VC schema 포맷 종류 |    M    | [CREDENTIAL_SCHEMA_TYPE](#16-credential_schema_type)      |
-| value | String               | VC schema             |    O    | 멀티베이스 인코딩됨     |
+| Name  | Type                     | Description            | **M/O** | **Note**                                           |
+|-------|--------------------------|------------------------|---------|----------------------------------------------------|
+| id    | String                   | VC schema URL          |    M    |                                                    |
+| type  | CREDENTIAL_SCHEMA_TYPE   | VC schema format type  |    M    | [CREDENTIAL_SCHEMA_TYPE](#16-credential_schema_type) |
+| value | String                   | VC schema              |    O    | Multibase encoded                                  |
 
 <br>
 
@@ -894,7 +892,7 @@ data class CredentialSchema(
 
 ### Description
 
-`발급 절차`
+`Issuance process`
 
 ### Declaration
 
@@ -911,11 +909,11 @@ data class Process(
 
 ### Property
 
-| Name        | Type     | Description         | **M/O** | **Note**                 |
-|-------------|----------|---------------------|---------|--------------------------|
-| endpoints   | List\<String> | Endpoint 목록    |    M    |                          |
-| reqE2e      | ReqE2e   | 요청 정보 |    M    | Proof 없음 <br> [ReqE2e](#55-reqe2e)     |
-| issuerNonce | String   | 발급처 nonce        |    M    |                          |
+| Name        | Type              | Description         | **M/O** | **Note**                            |
+|-------------|-------------------|---------------------|---------|-------------------------------------|
+| endpoints   | List\<String>     | List of endpoints   |    M    |                                     |
+| reqE2e      | ReqE2e            | Request information |    M    | No proof <br> [ReqE2e](#55-reqe2e)  |
+| issuerNonce | String            | Issuer nonce        |    M    |                                     |
 
 <br>
 
@@ -923,7 +921,7 @@ data class Process(
 
 ### Description
 
-`검증 프로파일`
+`Verification profile`
 
 ### Declaration
 
@@ -963,17 +961,17 @@ data class VerifyProfile(
 
 ### Property
 
-| Name        | Type        | Description           | **M/O** | **Note**                 |
-|-------------|-------------|-----------------------|---------|--------------------------|
-| id          | String      | 프로파일 ID            |    M    |                          |
-| type        | PROFILE_TYPE | 프로파일 종류          |    M    | [PROFILE_TYPE](#8-profile_type)         |
-| title       | String      | 프로파일 타이틀         |    M    |                          |
-| description | String      | 프로파일 설명   |    O    |                          |
-| logo        | LogoImage   | 로고 이미지            |    O    |  [LogoImage](#53-logoimage)        |
-| encoding    | String      | 프로파일 인코딩 종류 |    M    |                          |
-| language    | String      | 프로파일 언어 코드 |    M    |                          |
-| profile     | Profile     | 프로파일 컨텐츠      |    M    | [Profile](#521-profile)      |
-| proof       | Proof       | 소유자 proof           |    O    | [Proof](#4-proof)       |
+| Name        | Type          | Description           | **M/O** | **Note**                              |
+|-------------|---------------|-----------------------|---------|---------------------------------------|
+| id          | String        | Profile ID            |    M    |                                       |
+| type        | PROFILE_TYPE  | Profile type          |    M    | [PROFILE_TYPE](#8-profile_type)       |
+| title       | String        | Profile title         |    M    |                                       |
+| description | String        | Profile description   |    O    |                                       |
+| logo        | LogoImage     | Logo image            |    O    | [LogoImage](#53-logoimage)            |
+| encoding    | String        | Profile encoding type |    M    |                                       |
+| language    | String        | Profile language code |    M    |                                       |
+| profile     | Profile       | Profile content       |    M    | [Profile](#521-profile)               |
+| proof       | Proof         | Holder's proof        |    O    | [Proof](#4-proof)                     |
 
 <br>
 
@@ -981,7 +979,7 @@ data class VerifyProfile(
 
 ### Description
 
-`프로파일 컨텐츠`
+`Profile content`
 
 ### Declaration
 
@@ -998,11 +996,11 @@ data class Profile(
 
 ### Property
 
-| Name     | Type           | Description              | **M/O** | **Note**                 |
-|----------|----------------|--------------------------|---------|--------------------------|
-| verifier | ProviderDetail | 검증자 정보     |    M    |  [ProviderDetail](#54-providerdetail)       |
-| filter   | ProfileFilter  | 제출을 위한 필터링 정보 |    M    | [ProfileFilter](#5211-profilefilter)          |
-| process  | Process        | VP 제출 방법 |    M    |[Process](#5212-process)       |
+| Name     | Type           | Description              | **M/O** | **Note**                              |
+|----------|----------------|--------------------------|---------|---------------------------------------|
+| verifier | ProviderDetail | Verifier information     |    M    | [ProviderDetail](#54-providerdetail)  |
+| filter   | ProfileFilter  | Filtering information for Presentation |    M    | [ProfileFilter](#5211-profilefilter)  |
+| process  | Process        | VP Presentation process    |    M    | [Process](#5212-process)              |
 
 <br>
 
@@ -1010,7 +1008,7 @@ data class Profile(
 
 ### Description
 
-`제출을 위한 필터링 정보`
+`Filtering information for Presentation`
 
 ### Declaration
 
@@ -1022,9 +1020,9 @@ data class ProfileFilter(
 
 ### Property
 
-| Name              | Type               | Description                                | **M/O** | **Note**                 |
-|-------------------|--------------------|--------------------------------------------|---------|--------------------------|
-| credentialSchemas | List\<CredentialSchema> | 제출가능한 VC Schema 별 Claim과 발급처           |    M    | [CredentialSchema](#52111-credentialschema)      |
+| Name              | Type                      | Description                                | **M/O** | **Note**                                   |
+|-------------------|---------------------------|--------------------------------------------|---------|--------------------------------------------|
+| credentialSchemas | List\<CredentialSchema>   | Claims and issuers per submitable VC Schema|    M    | [CredentialSchema](#52111-credentialschema)|
 
 <br>
 
@@ -1032,7 +1030,7 @@ data class ProfileFilter(
 
 ### Description
 
-`제출가능한 VC Schema 별 Claim과 발급처`
+`Claims and issuers per submittable VC Schema`
 
 ### Declaration
 
@@ -1056,14 +1054,14 @@ data class CredentialSchema(
 
 ### Property
 
-| Name           | Type                 | Description           | **M/O** | **Note**                 |
-|----------------|----------------------|-----------------------|---------|--------------------------|
-| id             | String               | VC schema URL     |    M    |                          |
-| type           | CREDENTIAL_SCHEMA_TYPE | VC schema 포맷 종류 |    M    | [CREDENTIAL_SCHEMA_TYPE](#16-credential_schema_type)    |
-| value          | String               | VC schema             |    O    | 멀티베이스 인코딩됨     |
-| displayClaims  | List\<String>             | 사용자 화면에 노출될 claims 목록        |    O    |                          |
-| requiredClaims | List\<String>             | 필요 claims 목록       |    O    |                          |
-| allowedIssuers | List\<String>             | 허용된 발급처의 DID 목록       |    O    |                          |
+| Name           | Type                     | Description                      | **M/O** | **Note**                                      |
+|----------------|--------------------------|----------------------------------|---------|-----------------------------------------------|
+| id             | String                   | VC schema URL                    |    M    |                                               |
+| type           | CREDENTIAL_SCHEMA_TYPE   | VC schema format type            |    M    | [CREDENTIAL_SCHEMA_TYPE](#16-credential_schema_type) |
+| value          | String                   | VC schema                        |    O    | Multibase encoded                             |
+| displayClaims  | List\<String>            | List of claims to display to user|    O    |                                               |
+| requiredClaims | List\<String>            | List of required claims          |    O    |                                               |
+| allowedIssuers | List\<String>            | List of allowed issuer DIDs      |    O    |                                               |
 
 <br>
 
@@ -1090,12 +1088,12 @@ data class Process(
 
 ### Property
 
-| Name          | Type           | Description                    | **M/O** | **Note**                 |
-|---------------|----------------|--------------------------------|---------|--------------------------|
-| endpoints     | List\<String>       | Endpoint 목록               |    O    |                          |
-| reqE2e        | ReqE2e         | 요청 정보            |    M    | Proof 없음 <br> [ReqE2e](#55-reqe2e)     |
-| verifierNonce | String         | 발급처 nonce                   |    M    |                          |
-| authType      | VERIFY_AUTH_TYPE | 제출용 인증수단                  |    O    | [VERIFY_AUTH_TYPE](#18-verify_auth_type)   |
+| Name          | Type                  | Description                    | **M/O** | **Note**                              |
+|---------------|-----------------------|--------------------------------|---------|---------------------------------------|
+| endpoints     | List\<String>         | List of endpoints              |    O    |                                       |
+| reqE2e        | ReqE2e                | Request information            |    M    | No proof <br> [ReqE2e](#55-reqe2e)    |
+| verifierNonce | String                | Issuer nonce                   |    M    |                                       |
+| authType      | VERIFY_AUTH_TYPE      | Authentication method for submission |    O    | [VERIFY_AUTH_TYPE](#18-verify_auth_type) |
 
 <br>
 
@@ -1103,7 +1101,7 @@ data class Process(
 
 ### Description
 
-`로고 이미지`
+`Logo image`
 
 ### Declaration
 
@@ -1125,11 +1123,11 @@ data class LogoImage(
 
 ### Property
 
-| Name   | Type          | Description         | **M/O** | **Note**                 |
-|--------|---------------|---------------------|---------|--------------------------|
-| format | LOGO_IMAGE_TYPE | 이미지 포맷       |    M    | [LOGO_IMAGE_TYPE](#9-logo_image_type)     |
-| link   | String        | 로고 이미지 URL  |    O    | 멀티베이스 인코딩됨     |
-| value  | String        | 이미지 값         |    O    | 멀티베이스 인코딩됨     |
+| Name   | Type               | Description         | **M/O** | **Note**                              |
+|--------|--------------------|---------------------|---------|---------------------------------------|
+| format | LOGO_IMAGE_TYPE    | Image format        |    M    | [LOGO_IMAGE_TYPE](#9-logo_image_type) |
+| link   | String             | Logo image URL      |    O    | Multibase encoded                     |
+| value  | String             | Image value         |    O    | Multibase encoded                     |
 
 <br>
 
@@ -1137,7 +1135,7 @@ data class LogoImage(
 
 ### Description
 
-`제공자 상세 정보`
+`Provider details`
 
 ### Declaration
 
@@ -1171,14 +1169,14 @@ data class ProviderDetail(
 
 ### Property
 
-| Name        | Type      | Description                       | **M/O** | **Note**                 |
-|-------------|-----------|-----------------------------------|---------|--------------------------|
-| did         | String    | 제공자 DID                      |    M    |                          |
-| certVCRef   | String    | 가입증명서 URL              |    M    |                          |
-| name        | String    | 제공자 이름                     |    M    |                          |
-| description | String    | 제공자 설명              |    O    |                          |
-| logo        | LogoImage | 로고 이미지                        |    O    | [LogoImage](#53-logoimage)          |
-| ref         | String    | 참조 URL                     |    O    |                          |
+| Name        | Type      | Description                       | **M/O** | **Note**                              |
+|-------------|-----------|-----------------------------------|---------|---------------------------------------|
+| did         | String    | Provider DID                      |    M    |                                       |
+| certVCRef   | String    | Certificate URL                   |    M    |                                       |
+| name        | String    | Provider name                     |    M    |                                       |
+| description | String    | Provider description              |    O    |                                       |
+| logo        | LogoImage | Logo image                        |    O    | [LogoImage](#53-logoimage)            |
+| ref         | String    | Reference URL                     |    O    |                                       |
 
 <br>
 
@@ -1186,7 +1184,7 @@ data class ProviderDetail(
 
 ### Description
 
-`E2E 요청 데이터`
+`E2E request data`
 
 ### Declaration
 
@@ -1220,14 +1218,14 @@ data class ReqE2e(
 
 ### Property
 
-| Name      | Type      | Description                                   | **M/O** | **Note**                 |
-|-----------|-----------|-----------------------------------------------|---------|--------------------------|
-| nonce     | String               | 대칭키 생성용 nonce  |    M    | 멀티베이스 인코딩됨     |
-| curve     | ELLIPTIC_CURVE_TYPE    | 타원곡선 종류                  |    M    | [ELLIPTIC_CURVE_TYPE](#18-elliptic_curve_type)   |
-| publicKey | String               | 암호화용 서버 공개키 |    M    | 멀티베이스 인코딩됨     |
-| cipher    | SYMMETRIC_CIPHER_TYPE  | 암호화 종류                        |    M    | [SYMMETRIC_CIPHER_TYPE](#14-symmetric_cipher_type)  |
-| padding   | SYMMETRIC_PADDING_TYPE | 패딩 종류                       |    M    | [SYMMETRIC_PADDING_TYPE](#13-symmetric_padding_type)   |
-| proof     | Proof                | Key aggreement proof               |    O    | [Proof](#4-proof)    |
+| Name      | Type                     | Description                                   | **M/O** | **Note**                                    |
+|-----------|--------------------------|-----------------------------------------------|---------|---------------------------------------------|
+| nonce     | String                   | Nonce for symmetric key generation            |    M    | Multibase encoded                           |
+| curve     | ELLIPTIC_CURVE_TYPE      | Type of elliptic curve                        |    M    | [ELLIPTIC_CURVE_TYPE](#17-elliptic_curve_type) |
+| publicKey | String                   | Server public key for encryption              |    M    | Multibase encoded                           |
+| cipher    | SYMMETRIC_CIPHER_TYPE    | Type of encryption                            |    M    | [SYMMETRIC_CIPHER_TYPE](#14-symmetric_cipher_type) |
+| padding   | SYMMETRIC_PADDING_TYPE   | Type of padding                               |    M    | [SYMMETRIC_PADDING_TYPE](#13-symmetric_padding_type) |
+| proof     | Proof                    | Key agreement proof                           |    O    | [Proof](#4-proof)                           |
 
 <br>
 
@@ -1269,14 +1267,14 @@ data class VCSchema(
 
 ### Property
 
-| Name              | Type              | Description              | **M/O** | **Note**                 |
-|-------------------|-------------------|--------------------------|---------|--------------------------|
-| id                | String            | VC schema URL       |    M    |                          |
-| schema            | String            | VC schema 포맷 URL |    M    |                          |
-| title             | String            | VC schema 이름           |    M    |                          |
-| description       | String            | VC schema 설명     |    M    |                          |
-| metadata          | VCMetadata        | VC metadata              |    M    |  [VCMetadata](#61-vcmetadata)   |
-| credentialSubject | CredentialSubject | Credential subject       |    M    |  [CredentialSubject](#62-credentialsubject)   |
+| Name              | Type              | Description              | **M/O** | **Note**                                    |
+|-------------------|-------------------|--------------------------|---------|---------------------------------------------|
+| id                | String            | VC schema URL            |    M    |                                             |
+| schema            | String            | VC schema format URL     |    M    |                                             |
+| title             | String            | VC schema title          |    M    |                                             |
+| description       | String            | VC schema description    |    M    |                                             |
+| metadata          | VCMetadata        | VC metadata              |    M    | [VCMetadata](#61-vcmetadata)                |
+| credentialSubject | CredentialSubject | Credential subject       |    M    | [CredentialSubject](#62-credentialsubject)  |
 
 <br>
 
@@ -1301,8 +1299,8 @@ data class VCMetadata(
 
 | Name          | Type   | Description         | **M/O** | **Note**                 |
 |---------------|--------|---------------------|---------|--------------------------|
-| language      | String | VC 기본 언어 |    M    |                          |
-| formatVersion | String | VC 포맷 버전   |    M    |                          |
+| language      | String | Default language of VC |    M    |                          |
+| formatVersion | String | VC format version   |    M    |                          |
 
 <br>
 
@@ -1323,9 +1321,9 @@ data class CredentialSubject(
 
 ### Property
 
-| Name   | Type    | Description          | **M/O** | **Note**                 |
-|--------|---------|----------------------|---------|--------------------------|
-| claims | List\<Claim> | Namespace 별 Claim    |    M    | [Claim](#621-claim)                         |
+| Name   | Type              | Description          | **M/O** | **Note**                 |
+|--------|-------------------|----------------------|---------|--------------------------|
+| claims | List\<Claim>      | Claims by namespace  |    M    | [Claim](#621-claim)      |
 
 <br>
 
@@ -1348,10 +1346,10 @@ data class Claim(
 
 ### Property
 
-| Name      | Type       | Description              | **M/O** | **Note**                 |
-|-----------|------------|--------------------------|---------|--------------------------|
-| namespace | Namespace  | Claim namespace          |    M    |  [Namespace](#6211-namespace)      |
-| items     | List\<ClaimDef> | Claim 정의 목록           |    M    | [ClaimDef](#6212-claimdef)  |
+| Name      | Type              | Description              | **M/O** | **Note**                              |
+|-----------|-------------------|--------------------------|---------|---------------------------------------|
+| namespace | Namespace         | Claim namespace          |    M    | [Namespace](#6211-namespace)          |
+| items     | List\<ClaimDef>   | List of claim definitions|    M    | [ClaimDef](#6212-claimdef)            |
 
 <br>
 
@@ -1379,8 +1377,8 @@ data class Namespace(
 | Name | Type   | Description                   | **M/O** | **Note**                 |
 |------|--------|-------------------------------|---------|--------------------------|
 | id   | String | Claim namespace               |    M    |                          |
-| name | String | Namespace 이름                |    M    |                          |
-| ref  | String | Namespace 정보 URL             |    O    |                          |
+| name | String | Namespace name                |    M    |                          |
+| ref  | String | Namespace information URL     |    O    |                          |
 
 <br>
 
@@ -1388,7 +1386,7 @@ data class Namespace(
 
 ### Description
 
-`Claim 정의`
+`Claim definition`
 
 ### Declaration
 
@@ -1417,17 +1415,17 @@ data class ClaimDef(
 
 ### Property
 
-| Name        | Type            | Description          | **M/O** | **Note**                 |
-|-------------|-----------------|----------------------|---------|--------------------------|
-| id          | String          | Claim ID             |    M    |                          |
-| caption     | String          | Claim 이름            |    M    |                          |
-| type        | CLAIM_TYPE       | Claim 종류            |    M    | [CLAIM_TYPE](#10-claim_type)         |
-| format      | CLAIM_FORMAT     | Claim 포맷            |    M    |  [CLAIM_FORMAT](#11-claim_format)       |
-| hideValue   | Boolean            | 값 숨김                |    O    | Default(false)           |
-| location    | LOCATION        | 값 위치                |    O    | Default(inline) <br> [LOCATION](#12-location)        |
-| required    | Boolean            | 필수여부               |    O    | Default(true)            |
-| description | String          | Claim 설명             |    O    | Default("")              |
-| i18n        | Map\<String, String> | 국제화                 |    O    |                          |
+| Name        | Type                   | Description          | **M/O** | **Note**                                   |
+|-------------|------------------------|----------------------|---------|--------------------------------------------|
+| id          | String                 | Claim ID             |    M    |                                            |
+| caption     | String                 | Claim name           |    M    |                                            |
+| type        | CLAIM_TYPE             | Claim type           |    M    | [CLAIM_TYPE](#10-claim_type)               |
+| format      | CLAIM_FORMAT           | Claim format         |    M    | [CLAIM_FORMAT](#11-claim_format)           |
+| hideValue   | Boolean                | Hide value           |    O    | Default(false)                             |
+| location    | LOCATION               | Value location       |    O    | Default(inline) <br> [LOCATION](#12-location) |
+| required    | Boolean                | Required             |    O    | Default(true)                              |
+| description | String                 | Claim description    |    O    | Default("")                                |
+| i18n        | Map\<String, String>   | Internationalization |    O    |                                            |
 
 <br>
 
@@ -1439,7 +1437,7 @@ data class ClaimDef(
 
 ### Description
 
-`각 요청 프로토콜 객체는 해당 추상 클래스를 상속하며, 프로토콜 메시지의 기본 클래스 역할을 한다.`
+`Each request protocol object inherits from this abstract class, which serves as the base class for protocol messages`
 
 ### Declaration
 
@@ -1456,8 +1454,8 @@ open class BaseRequestVo @JvmOverloads constructor(
 
 | Name            | Type           | Description                   | **M/O** | **Note** |
 |-----------------|----------------|--------------------------------|---------|----------|
-| id            | String | 메시지 ID         |    M    | 
-| txId  | String | 거래 ID         |    O    | 
+| id            | String | Message ID         |    M    | 
+| txId  | String | Transaction ID         |    O    | 
 
 <br>
 
@@ -1466,7 +1464,7 @@ open class BaseRequestVo @JvmOverloads constructor(
 
 ### Description
 
-`월렛 등록 프로토콜을 위한 요청 객체`
+`Request object for register wallet protocol`
 
 ### Declaration
 
@@ -1482,7 +1480,7 @@ data class P131RequestVo @JvmOverloads constructor(
 
 | Name            | Type           | Description                   | **M/O** | **Note** |
 |-----------------|----------------|--------------------------------|---------|----------|
-| attestedDidDoc  | AttestedDidDoc | 제공자 인증된 DID 문서          |    M    | [AttestedDidDoc](#42-attesteddiddoc) |
+| attestedDidDoc  | AttestedDidDoc | Provider Attested DID document          |    M    | [AttestedDidDoc](#42-attesteddiddoc) |
 
 <br>
 
@@ -1490,7 +1488,7 @@ data class P131RequestVo @JvmOverloads constructor(
 
 ### Description
 
-`사용자 등록 프로토콜을 위한 요청 객체`
+`Request object for register user protocol`
 
 ### Declaration
 
@@ -1512,20 +1510,21 @@ data class P132RequestVo @JvmOverloads constructor(
 
 | Name            | Type              | Description                   | **M/O** | **Note** |
 |-----------------|-------------------|--------------------------------|---------|----------|
-| attestedDIDDoc  | AttestedDidDoc     | 제공자의 인증된 DID 문서          |    M    | [AttestedDidDoc](#42-attesteddiddoc) |
-| reqEcdh         | ReqEcdh            | ECDH 요청 데이터               |    M    | [ReqEcdh](#31-reqecdh) |
-| seed            | ServerTokenSeed    | 서버 토큰 시드                 |    M    | [ServerTokenSeed](#21-servertokenseed) |
-| signedDidDoc    | SignedDidDoc       | 서명된 DID 문서                |    M    | [SignedDidDoc](#43-signeddiddoc) |
-| serverToken     | String             | 서버 토큰                      |    M    |          |
-| iv              | String             | 초기화 벡터                    |    M    |          |
-| kycTxId         | String             | KYC 거래 ID                |    M    |          |
+| attestedDIDDoc  | AttestedDidDoc     | Provider Attested DID document          |    M    | [AttestedDidDoc](#42-attesteddiddoc) |
+| reqEcdh         | ReqEcdh            | Request Data for ECDH               |    M    | [ReqEcdh](#31-reqecdh) |
+| seed            | ServerTokenSeed    | Server token seed              |    M    | [ServerTokenSeed](#21-servertokenseed) |
+| signedDidDoc    | SignedDidDoc       | Signed DID document            |    M    | [SignedDidDoc](#43-signeddiddoc) |
+| serverToken     | String             | Server token                   |    M    |          |
+| iv              | String             | Initialize vector          |    M    |          |
+| kycTxId         | String             | KYC transaction ID             |    M    |          |
+
 <br>
 
 ## 1.1.3. P210RequestVo
 
 ### Description
 
-`VC 발급 프로토콜을 위한 요청 객체`
+`Request object for issue VC protocol`
 
 ### Declaration
 
@@ -1550,16 +1549,16 @@ data class P210RequestVo @JvmOverloads constructor(
 
 | Name         | Type             | Description                   | **M/O** | **Note** |
 |--------------|------------------|--------------------------------|---------|----------|
-| vcPlanId     | String            | VC Plan ID                 |    M    |          |
-| issuer       | String            | 발급처 DID                     |    M    |          |
-| offerId      | String            | Offer ID                        |    M    |          |
-| reqEcdh      | ReqEcdh           | ECDH 요청 데이터               |    M    | [ReqEcdh](#31-reqecdh) |
-| seed         | ServerTokenSeed   | 서버 토큰 시드                 |    M    | [ServerTokenSeed](#21-servertokenseed) |
-| serverToken  | String            | 서버 토큰                      |    M    |          |
-| didAuth      | DIDAuth           | DID Auth 데이터                |    M    | [DIDAuth](#35-didauth) |
-| accE2e       | AccE2e            | E2E 암호화 데이터              |    M    | [AccE2e](#33-acce2e) |
-| encReqVc     | String            | 암호화 VC 요청 데이터    |    M    |          |
-| vcId         | String            | VC ID                      |    M    |          |
+| vcPlanId     | String            | Verifiable Credential Plan ID  |    M    |          |
+| issuer       | String            | Issuer DID       |    M    |          |
+| offerId      | String            | Offer ID |    M    |          |
+| reqEcdh      | ReqEcdh           | ECDH request data               |    M    | [ReqEcdh](#31-reqecdh) |
+| seed         | ServerTokenSeed   | Server token seed              |    M    | [ServerTokenSeed](#21-servertokenseed) |
+| serverToken  | String            | Server token                   |    M    |          |
+| didAuth      | DIDAuth           | DID Auth data             |    M    | [DIDAuth](#35-didauth) |
+| accE2e       | AccE2e            | E2E encryption data     |    M    | [AccE2e](#33-acce2e) |
+| encReqVc     | String            | Encrypted Verifiable Credential request data |    M    |          |
+| vcId         | String            | Verifiable Credential ID       |    M    |          |
 
 <br>
 
@@ -1567,7 +1566,7 @@ data class P210RequestVo @JvmOverloads constructor(
 
 ### Description
 
-`VP 제출 프로토콜을 위한 요청 객체`
+`Request object for submit VP protocol`
 
 ### Declaration
 
@@ -1587,9 +1586,9 @@ data class P310RequestVo @JvmOverloads constructor(
 | Name     | Type             | Description                      | **M/O** | **Note** |
 |----------|------------------|----------------------------------|---------|----------|
 | offerId  | String            | Offer ID  |    M    |          |
-| reqEcdh  | ReqEcdh           | ECDH 요청 데이터                 |    M    | [ReqEcdh](#31-reqecdh) |
-| accE2e   | AccE2e            | E2E 수락 데이터       |    M    | [AccE2e](#33-acce2e) |
-| encVp    | String            | 암호화된 VP |    M    |          |
+| reqEcdh  | ReqEcdh           | ECDH request data                 |    M    | [ReqEcdh](#31-reqecdh) |
+| accE2e   | AccE2e            | E2E acceptance data       |    M    | [AccE2e](#33-acce2e) |
+| encVp    | String            | Encrypted Verifiable Presentation |    M    |          |
 
 <br>
 
@@ -1597,7 +1596,7 @@ data class P310RequestVo @JvmOverloads constructor(
 
 ### Description
 
-`각 응답 프로토콜 객체는 해당 추상 클래스를 상속하며, 프로토콜 메시지의 기본 클래스 역할을 한다.`
+`Each response protocol object inherits from this abstract class, which serves as the base class for protocol messages`
 
 ### Declaration
 
@@ -1616,9 +1615,9 @@ open class BaseResponseVo(
 
 | Name            | Type           | Description                   | **M/O** | **Note** |
 |-----------------|----------------|--------------------------------|---------|----------|
-| txId            | String | 거래 ID         |    M    | 
-| code  | Integer | 에러코드         |    M    | 
-| message  | String | 에러메시지         |    M    | 
+| txId            | String | Transaction ID         |    M    | 
+| code  | Integer | Error code         |    M    | 
+| message  | String | Error message         |    M    | 
 
 <br>
 
@@ -1626,7 +1625,7 @@ open class BaseResponseVo(
 
 ### Description
 
-`월렛 등록 프로토콜을 위한 응답 객체`
+`Response object for register wallet protocol`
 
 ### Declaration
 
@@ -1644,7 +1643,7 @@ N/A
 
 ### Description
 
-`사용자 등록 프로토콜을 위한 응답 객체`
+`Response object for register user protocol`
 
 ### Declaration
 
@@ -1663,9 +1662,9 @@ data class P132ResponseVo @JvmOverloads constructor(
 
 | Name     | Type     | Description                   | **M/O** | **Note** |
 |----------|----------|-------------------------------|---------|----------|
-| iv       | String   | 초기화 벡터                   |    M    |          |
-| encStd   | String   | 암호화된 서버 토큰 데이터       |    M    |          |
-| accEcdh  | AccEcdh  | ECDH 수락 데이터              |    M    | [AccEcdh](#32-accecdh) |
+| iv       | String   | Initialize vector         |    M    |          |
+| encStd   | String   | Encrypted server token data       |    M    |          |
+| accEcdh  | AccEcdh  | ECDH acceptance data            |    M    | [AccEcdh](#32-accecdh) |
 
 <br>
 
@@ -1673,7 +1672,7 @@ data class P132ResponseVo @JvmOverloads constructor(
 
 ### Description
 
-`VC 발급 프로토콜을 위한 응답 객체`
+`Response object for issue VC protocol`
 
 ### Declaration
 
@@ -1696,13 +1695,13 @@ data class P210ResponseVo @JvmOverloads constructor(
 
 | Name       | Type           | Description                      | **M/O** | **Note** |
 |------------|----------------|----------------------------------|---------|----------|
-| refId      | String          | 참조 ID                          |    M    |          |
-| accEcdh    | AccEcdh         | ECDH 수락 데이터                 |    M    | [AccEcdh](#32-accecdh) |
-| iv         | String          | 초기화 벡터                     |    M    |          |
-| encStd     | String          | 암호화된 서버 토큰 데이터        |    M    |          |
-| authNonce  | String          | 인증 nonce                       |    M    |          |
-| profile    | IssueProfile    | 발급 프로파일                      |    M    |[IssueProfile](#51-issueprofile)          |
-| e2e        | E2e             | E2E 암호화 데이터                |    M    | [E2e](#34-e2e) |
+| refId      | String          | Reference ID                     |    M    |          |
+| accEcdh    | AccEcdh         | ECDH acceptance data            |    M    | [AccEcdh](#32-accecdh) |
+| iv         | String          | Initialize vector            |    M    |          |
+| encStd     | String          | Encrypted server token data        |    M    |          |
+| authNonce  | String          | Auth nonce             |    M    |          |
+| profile    | IssueProfile    | Issue profile                   |    M    |[IssueProfile](#51-issueprofile)            |
+| e2e        | E2e             | E2E encryption data       |    M    | [E2e](#34-e2e) |
 
 <br>
 
@@ -1710,7 +1709,7 @@ data class P210ResponseVo @JvmOverloads constructor(
 
 ### Description
 
-`VP 제출 프로토콜을 위한 응답 객체`
+`Response object for submit VP protocol`
 
 ### Declaration
 
@@ -1727,7 +1726,7 @@ data class P310ResponseVo @JvmOverloads constructor(
 
 | Name    | Type           | Description                      | **M/O** | **Note** |
 |---------|----------------|----------------------------------|---------|----------|
-| profile | VerifyProfile   |검증 프로파일             |    M    | [VerifyProfile](#52-verifyprofile)         |
+| profile | VerifyProfile   | Verify profile             |    M    | [VerifyProfile](#52-verifyprofile)          |
 
 <br>
 
@@ -1736,7 +1735,7 @@ data class P310ResponseVo @JvmOverloads constructor(
 
 ### Description
 
-`서버 토큰 시드`
+`Server token seed`
 
 ### Declaration
 
@@ -1752,9 +1751,9 @@ data class ServerTokenSeed(
 
 | Name        | Type                                          | Description                   | **M/O** | **Note** |
 |-------------|-----------------------------------------------|-------------------------------|---------|----------|
-| purpose     | SERVER_TOKEN_PURPOSE       | 서버 토큰 목적        |    M    | [ServerTokenPurpose](#20-server_token_purpose) |
-| walletInfo  | SignedWalletInfo                              | 서명된 월렛 정보        |    M    | [SignedWalletInfo](#212-signedwalletinfo) |
-| caAppInfo   | AttestedAppInfo                               | 인증된 앱 정보          |    M    | [AttestedAppInfo](#211-attestedappinfo) |
+| purpose     | SERVER_TOKEN_PURPOSE       | server token purpose  |    M    | [ServerTokenPurpose](#20-server_token_purpose) |
+| walletInfo  | SignedWalletInfo                              | Signed wallet information     |    M    | [SignedWalletInfo](#212-signedwalletinfo) |
+| caAppInfo   | AttestedAppInfo                               | Attested app information      |    M    | [AttestedAppInfo](#211-attestedappinfo) |
 
 <br>
 
@@ -1762,7 +1761,7 @@ data class ServerTokenSeed(
 
 ### Description
 
-`인증된 앱 정보`
+`Attested app information`
 
 
 ### Declaration
@@ -1780,10 +1779,10 @@ data class AttestedAppInfo(
 
 | Name     | Type     | Description                   | **M/O** | **Note**                  |
 |----------|----------|-------------------------------|---------|---------------------------|
-| appId    | String   | 인가앱 ID           |    M    |                            |
-| provider | Provider | 인가앱 정보             |    M    | [Provider](#2111-provider)      |
-| nonce    | String   | Nonce        |    M    |                            |
-| proof    | Proof    | Proof              |    O    | [Proof](#4-proof)          |     
+| appId    | String   | Certificated app id       |    M    |                            |
+| provider | Provider | Provider information          |    M    | [Provider](#2111-provider)      |
+| nonce    | String   | Nonce for attestation|    M    |                            |
+| proof    | Proof    | Assertion proof               |    O    | [Proof](#4-proof)         
 
 <br>
 
@@ -1791,7 +1790,7 @@ data class AttestedAppInfo(
 
 ### Description
 
-`제공자 정보`
+`Provider information`
 
 ### Declaration
 
@@ -1806,8 +1805,8 @@ data class Provider(
 
 | Name       | Type   | Description             | **M/O** | **Note** |
 |------------|--------|-------------------------|---------|----------|
-| did        | String | 제공자 DID    |    M    |          |
-| certVcRef  | String | 가입증명서 VC URL |    M    |          |
+| did        | String | Provider DID    |    M    |          |
+| certVcRef  | String | Certificate VC URL |    M    |          |
 
 <br>
 
@@ -1815,7 +1814,7 @@ data class Provider(
 
 ### Description
 
-`서명된 월렛 정보`
+`Signed wallet information`
 
 ### Declaration
 
@@ -1843,10 +1842,10 @@ data class SignedWalletInfo(
 
 | Name       | Type           | Description                | **M/O** | **Note** |
 |------------|----------------|----------------------------|---------|----------|
-| wallet     | Wallet          | 월렛 정보                 |    M    | [Wallet](#2121-wallet) |
-| nonce      | String          | Nonce                      |    M    |          |
-| proof      | Proof           | Proof                    |    O    | [Proof](#4-proof) |
-| proofs     | List<Proof>     | Proof 목록               |    O    | [Proof](#4-proof) |
+| wallet     | Wallet          | Wallet information         |    M    | [Wallet](#2121-wallet) |
+| nonce      | String          | Nonce                |    M    |          |
+| proof      | Proof           | Proof               |    O    | [Proof](#4-proof) |
+| proofs     | List<Proof>     | List of proofs             |    O    | [Proof](#4-proof) |
 
 <br>
 
@@ -1854,7 +1853,7 @@ data class SignedWalletInfo(
 
 ### Description
 
-`월렛 정보`
+`Wallet details`
 
 ### Declaration
 
@@ -1868,8 +1867,8 @@ data class Wallet(
 
 | Name       | Type           | Description                | **M/O** | **Note** |
 |------------|----------------|----------------------------|---------|----------|
-| id         | String          | 월렛 ID  |    M    |          |
-| did        | String          | 월렛 제공자 DID |    M    |          |
+| id         | String          | Wallet ID  |    M    |          |
+| did        | String          | Wallet provider DID |    M    |          |
 
 <br>
 
@@ -1877,7 +1876,7 @@ data class Wallet(
 
 ### Description
 
-`서버 토큰 데이터`
+`Server token data`
 
 ### Declaration
 
@@ -1897,11 +1896,11 @@ data class ServerTokenData(
 
 | Name       | Type                                         | Description                   | **M/O** | **Note** |
 |------------|----------------------------------------------|-------------------------------|---------|----------|
-| purpose    | SERVER_TOKEN_PURPOSE      | 서버토큰목적   |    M    | [ServerTokenPurpose](#20-server_token_purpose) |
-| walletId   | String                                       | 월렛 ID |    M    |          |
-| appId      | String                                       | 인가앱 ID    |    M    |          |
-| validUntil | String                                       | 서버토큰 유효시간  |    M    |          |
-| provider   | Provider                                     | 제공자 정보          |    M    | [Provider](#2111-provider) |
+| purpose    | SERVER_TOKEN_PURPOSE      | Server token purpose   |    M    | [ServerTokenPurpose](#20-server_token_purpose) |
+| walletId   | String                                       | Wallet ID |    M    |          |
+| appId      | String                                       | Certificate app ID    |    M    |          |
+| validUntil | String                                       | Expiration date of the server token  |    M    |          |
+| provider   | Provider                                     | Provider information          |    M    | [Provider](#2111-provider) |
 | nonce      | String                                       | Nonce                   |    M    |          |
 | proof      | Proof                                        | Proof                  |    O    | [Proof](#4-proof) |
 
@@ -1911,7 +1910,7 @@ data class ServerTokenData(
 
 ### Description
 
-`월렛 토큰 시드`
+`Wallet token seed`
 
 ### Declaration
 
@@ -1929,11 +1928,11 @@ data class WalletTokenSeed(
 
 | Name       | Type                                        | Description                       | **M/O** | **Note** |
 |------------|---------------------------------------------|-----------------------------------|---------|----------|
-| purpose    | WALLET_TOKEN_PURPOSE     | 월렛토큰목적     |    M    | [WalletTokenPurpose](#21-wallet_token_purpose) |
-| pkgName    | String                                      | 인가앱 패키지명 |    M    |      |
+| purpose    | WALLET_TOKEN_PURPOSE     | Wallet token purpose     |    M    | [WalletTokenPurpose](#21-wallet_token_purpose) |
+| pkgName    | String                                      | CA package name |    M    |      |
 | nonce      | String                                      | Nonce                        |    M    |          |
-| validUntil | String                                      | 월렛토큰 유효시간      |    M    |          |
-| userId     | String                                      | 사용자 ID |    M    |          |
+| validUntil | String                                      | Expiration date of the token      |    M    |          |
+| userId     | String                                      | User ID |    M    |          |
 
 <br>
 
@@ -1942,7 +1941,7 @@ data class WalletTokenSeed(
 
 ### Description
 
-`월렛 토큰 데이터`
+`Wallet token data`
 
 ### Declaration
 
@@ -1960,9 +1959,9 @@ data class WalletTokenData(
 
 | Name       | Type             | Description                   | **M/O** | **Note** |
 |------------|------------------|-------------------------------|---------|----------|
-| seed       | WalletTokenSeed   | 월렛 토큰 시드                 |    M    | [WalletTokenSeed](#23-wallettokenseed) |
-| sha256_pii | String            | PII의 SHA-256 해시             |    M    |          |
-| provider   | Provider          | 제공자 정보                    |    M    | [Provider](#2111-provider) |
+| seed       | WalletTokenSeed   | Wallet token seed     |    M    | [WalletTokenSeed](#23-wallettokenseed) |
+| sha256_pii | String            | SHA-256 hash of PII           |    M    |          |
+| provider   | Provider          | Provider information          |    M    | [Provider](#2111-provider) |
 | nonce      | String            | Nonce                    |    M    |          |
 | proof      | Proof             | Proof                  |    O    | [Proof](#4-proof) |
 
@@ -1974,7 +1973,7 @@ data class WalletTokenData(
 
 ### Description
 
-`ECDH 요청 데이터`
+`ECDH request data`
 
 ### Declaration
 
@@ -2021,13 +2020,13 @@ data class ReqEcdh(
 
 | Name        | Type                             | Description                               | **M/O** | **Note** |
 |-------------|----------------------------------|-------------------------------------------|---------|----------|
-| client      | String                           | 클라이언트 DID                         |    M    |          |
-| clientNonce | String                           | 클라이언트 Nonce              |    M    |          |
-| curve       | ELLIPTIC_CURVE_TYPE | ECDH 커브타입                      |    M    |          |
-| publicKey   | String                           | 공개키                     |    M    |          |
-| candidate   | ReqEcdh.Ciphers                  |  대칭키 암호화 정보                         |    O    |          |
+| client      | String                           | Client DID                         |    M    |          |
+| clientNonce | String                           | Client Nonce              |    M    |          |
+| curve       | ELLIPTIC_CURVE_TYPE | Curve type for ECDH                       |    M    |          |
+| publicKey   | String                           | Public key for ECDH                       |    M    |          |
+| candidate   | ReqEcdh.Ciphers                  | Candidate ciphers                         |    O    |          |
 | proof       | Proof                            | Proof                   |    M    | [Proof](#4-proof) |
-| proofs      | List\<Proof>                      |  Proof 목록                            |    O    | [Proof](#4-proof) |
+| proofs      | List<Proof>                      | List of proofs                            |    O    | [Proof](#4-proof) |
 
 <br>
 
@@ -2035,7 +2034,7 @@ data class ReqEcdh(
 
 ### Description
 
-`ECDH 수락 데이터`
+`ECDH acceptance data`
 
 ### Declaration
 
@@ -2071,11 +2070,11 @@ data class AccEcdh(
 
 | Name        | Type                                       | Description                        | **M/O** | **Note** |
 |-------------|--------------------------------------------|------------------------------------|---------|----------|
-| server      | String                                     | 서버 ID                  |    M    |          |
-| serverNonce | String                                     | 서버 Nonce                       |    M    |          |
-| publicKey   | String                                     | 공개키       |    M    |          |
-| cipher      | SymmetricCipherType.SYMMETRIC_CIPHER_TYPE  | 암호화 종류         |    M    |          |
-| padding     | SymmetricPaddingType.SYMMETRIC_PADDING_TYPE| 패딩 종류        |    M    |          |
+| server      | String                                     | Server ID                  |    M    |          |
+| serverNonce | String                                     | Server Nonce                       |    M    |          |
+| publicKey   | String                                     | Public Key for key agreement       |    M    |          |
+| cipher      | SymmetricCipherType.SYMMETRIC_CIPHER_TYPE  | Cipher type for encryption         |    M    |          |
+| padding     | SymmetricPaddingType.SYMMETRIC_PADDING_TYPE| Padding type for encryption        |    M    |          |
 | proof       | Proof                                      | Key agreement proof                |    O    | [Proof](#4-proof) |
 
 <br>
@@ -2084,7 +2083,7 @@ data class AccEcdh(
 
 ### Description
 
-`E2E 수락 데이터`
+`E2E acceptance data`
 
 ### Declaration
 
@@ -2112,10 +2111,10 @@ data class AccE2e(
 
 | Name       | Type               | Description                | **M/O** | **Note**               |
 |------------|--------------------|----------------------------|---------|------------------------|
-| publicKey  | String              | 공개키  |    M    | |
-| iv         | String              | 초기화 벡터      |    M    | |
+| publicKey  | String              | Public Key for encryption  |    M    | |
+| iv         | String              | Initialize Vector      |    M    | |
 | proof      | Proof               | Key agreement proof        |    O    | [Proof](#4-proof)       |
-| proofs     | List\<Proof>         | proof 목록            |    O    | [Proof](#4-proof)       |
+| proofs     | List\<Proof>         | List of proofs             |    O    | [Proof](#4-proof)       |
 
 <br>
 
@@ -2123,7 +2122,7 @@ data class AccE2e(
 
 ### Description
 
-`E2E 암호화 정보`
+`E2E encryption information`
 
 ### Declaration
 
@@ -2143,8 +2142,8 @@ data class E2e(
 
 | Name  | Type   | Description                      | **M/O** | **Note** |
 |-------|--------|----------------------------------|---------|----------|
-| iv    | String | 초기화 벡터       |    M    |          |
-| encVc | String | 암호화된 VC  |    M    |          |
+| iv    | String | Initialize vector       |    M    |          |
+| encVc | String | Encrypted Verifiable Credential  |    M    |          |
 
 <br>
 
@@ -2152,7 +2151,7 @@ data class E2e(
 
 ### Description
 
-`DID Auth 데이터`
+`DID Authentication data`
 
 ### Declaration
 
@@ -2180,10 +2179,10 @@ data class DIDAuth(
 
 | Name       | Type       | Description                        | **M/O** | **Note**                  |
 |------------|------------|------------------------------------|---------|---------------------------|
-| did        | String     | 대상 DID     |    M    |                            |
+| did        | String     | DID     |    M    |                            |
 | authNonce  | String     | Auth nonce      |    M    |                            |
-| proof      | Proof      | 인증 proof               |    M    | [Proof](#4-proof)          |
-| proofs     | List\<Proof>| 인증 proof 목록      |    M    | [Proof](#4-proof)          |
+| proof      | Proof      | Authentication proof               |    M    | [Proof](#4-proof)          |
+| proofs     | List\<Proof>| List of authentication proofs      |    M    | [Proof](#4-proof)          |
 
 <br>
 
@@ -2192,7 +2191,7 @@ data class DIDAuth(
 
 ### Description
 
-`인코딩된 DID 문서`
+`Encoded DID document`
 
 ### Declaration
 
@@ -2207,7 +2206,7 @@ data class DidDocVo(
 
 | Name   | Type   | Description            | **M/O** | **Note** |
 |--------|--------|------------------------|---------|----------|
-| didDoc | String | 인코딩된 DID 문서 |    M    |          |
+| didDoc | String | Encoded DID document |    M    |          |
 
 <br>
 
@@ -2215,7 +2214,7 @@ data class DidDocVo(
 
 ### Description
 
-`제공자의 인증된 DID 문서 `
+`Attested DID information`
 
 ### Declaration
 
@@ -2247,9 +2246,9 @@ data class AttestedDidDoc(
 
 | Name       | Type     | Description                     | **M/O** | **Note**                  |
 |------------|----------|---------------------------------|---------|---------------------------|
-| walletId   | String   | 월렛 ID               |    M    |                            |
-| ownerDidDoc| String   | 소유자의 DID 문서            |    M    |                            |
-| provider   | Provider | 제공자 정보            |    M    | [Provider](#2111-provider)      |
+| walletId   | String   | Wallet ID               |    M    |                            |
+| ownerDidDoc| String   | Owner's DID document            |    M    |                            |
+| provider   | Provider | Provider information            |    M    | [Provider](#2111-provider)      |
 | nonce      | String   | Nonce |    M    |                            |
 | proof      | Proof    | Attestation proof               |    M    | [Proof](#4-proof)          |
 
@@ -2259,7 +2258,7 @@ data class AttestedDidDoc(
 
 ### Description
 
-`서명된 DID 문서`
+`Signed DID Document`
 
 ### Declaration
 
@@ -2291,11 +2290,11 @@ data class SignedDidDoc(
 
 | Name       | Type           | Description                | **M/O** | **Note** |
 |------------|----------------|----------------------------|---------|----------|
-| ownerDidDoc| String          | 소유자의 DID document       |    M    |          |
-| wallet     | Wallet          | 월렛 정보         |    M    | [Wallet](#2121-wallet) |
+| ownerDidDoc| String          | Owner's DID document       |    M    |          |
+| wallet     | Wallet          | Wallet information         |    M    | [Wallet](#2121-wallet) |
 | nonce      | String          | Nonce                |    M    |          |
 | proof      | Proof           | Proof               |    M    | [Proof](#4-proof) |
-| proofs     | List\<Proof>     | Proof 목록             |    M    | [Proof](#4-proof) |
+| proofs     | List\<Proof>     | List of proofs             |    M    | [Proof](#4-proof) |
 
 <br>
 
@@ -2304,7 +2303,7 @@ data class SignedDidDoc(
 
 ### Description
 
-`발급오퍼 페이로드`
+`Payload for issuing an offer`
 
 ### Declaration
 
@@ -2338,8 +2337,8 @@ data class IssueOfferPayload(
 |-----------|--------|-------------------------------|---------|----------|
 | offerId   | String | Offer ID |    M    |          |
 | vcPlanId  | String | VC Plan ID  |    M    |          |
-| issuer    | String | 발급처 DID      |    M    |          |
-| validUntil| String | 유효시간          |    M    |          |
+| issuer    | String | Issuer DID      |    M    |          |
+| validUntil| String | Expiration date          |    M    |          |
 
 <br>
 
@@ -2347,7 +2346,7 @@ data class IssueOfferPayload(
 
 ### Description
 
-`제출오퍼 페이로드`
+`Payload for verifying an offer`
 
 ### Declaration
 
@@ -2403,13 +2402,13 @@ data class VerifyOfferPayload(
 | Name       | Type                  | Description                           | **M/O** | **Note** |
 |------------|-----------------------|---------------------------------------|---------|----------|
 | offerId    | String                 | Offer ID              |    M    |          |
-| type       | OFFER_TYPE  | Offer 타입            |    M    |          |
-| mode       | PRESENT_MODE | 제출모드           |    M    |          |
-| device     | String                 | 응대장치 식별자      |    O    |          |
-| service    | String                 | 서비스 식별자     |    O    |          |
-| endpoints  | List\<String>           | 프로파일 요청 API endpoint 목록             |    O    |          |
-| validUntil | String                 | 유효시간        |    M    |          |
-| locked     | Boolean                | Offer 잠김 여부    |    O    |          |
+| type       | OFFER_TYPE  | Offer type            |    M    |          |
+| mode       | PRESENT_MODE | Presentation mode           |    M    |          |
+| device     | String                 | Device identifier      |    O    |          |
+| service    | String                 | Service identifier     |    O    |          |
+| endpoints  | List\<String>           | List of profile request API endpoints             |    O    |          |
+| validUntil | String                 | End date of the offer        |    M    |          |
+| locked     | Boolean                | Offer locked status    |    O    |          |
 
 <br>
 
@@ -2418,7 +2417,7 @@ data class VerifyOfferPayload(
 
 ### Description
 
-`VC 요청 객체`
+`Request object for VC`
 
 ### Declaration
 
@@ -2438,8 +2437,8 @@ data class ReqVC(
 
 | Name         | Type            | Description                         | **M/O** | **Note** |
 |--------------|-----------------|-------------------------------------|---------|----------|
-| refId        | String           | 참조 ID       |    M    |          |
-| profile      | Profile    | 발급 요청 프로파일      |    M    |          |
+| refId        | String           | Reference ID       |    M    |          |
+| profile      | Profile    | Request issue profile      |    M    |          |
 
 <br>
 
@@ -2447,7 +2446,7 @@ data class ReqVC(
 
 ### Description
 
-`발급 요청 프로파일`
+`Request issue profile`
 
 ### Declaration
 
@@ -2467,8 +2466,8 @@ data class Profile(
 
 | Name         | Type            | Description                         | **M/O** | **Note** |
 |--------------|-----------------|-------------------------------------|---------|----------|
-| id        | String | 발급처 DID                        |    M    |                          |
-| issuerNonce | String            | 발급처 nonce        |    M    |                                     |
+| id        | String | Issuer DID                        |    M    |                          |
+| issuerNonce | String            | Issuer nonce        |    M    |                                     |
 <br>
 
 
@@ -2476,7 +2475,7 @@ data class Profile(
 
 ### Description
 
-`VC Plan 목록`
+`List of VC plan`
 
 ### Declaration
 
@@ -2496,8 +2495,8 @@ data class VCPlanList(
 
 | Name   | Type             | Description                      | **M/O** | **Note** |
 |--------|------------------|----------------------------------|---------|----------|
-| count  | int              | VC plan의 수               |    M    |          |
-| items  | List\<VCPlan>     | VC plan 목록              |    M    | [VCPlan](#621-vcplan) |
+| count  | int              | Number of VC plan list               |    M    |          |
+| items  | List\<VCPlan>     | List of VC plan                |    M    | [VCPlan](#621-vcplan) |
 
 <br>
 
@@ -2505,7 +2504,7 @@ data class VCPlanList(
 
 ### Description
 
-`VC plan 상세 객체`
+`Details of VC plan`
 
 ### Declaration
 
@@ -2562,22 +2561,22 @@ data class VCPlan(
 | Name           | Type               | Description                          | **M/O** | **Note** |
 |----------------|--------------------|--------------------------------------|---------|----------|
 | vcPlanId       | String             | VC plan ID          |    M    |          |
-| name           | String             | VC plan 이름                |    M    |          |
-| description    | String             | VC plan 설명           |    M    |          |
-| ref            | String             | 참조 ID          |    M    |          |
-| logo           | LogoImage          | 로고이미지        |    O    | [LogoImage](#53-logoimage) |
-| validFrom      | String             | 유효시작일      |    M    |          |
-| validUntil     | String             | 유효만료일      |    M    |          |
+| name           | String             | VC plan name                 |    M    |          |
+| description    | String             | VC plan description           |    M    |          |
+| ref            | String             | Reference ID          |    M    |          |
+| logo           | LogoImage          | Logo image        |    O    | [LogoImage](#53-logoimage) |
+| validFrom      | String             | Validity start date      |    M    |          |
+| validUntil     | String             | Validity end date      |    M    |          |
 | credentialSchema| CredentialSchema  | Credential schema            |    O    |          |
-| option         | Option      | VC Plan 옵션                         |    O    |          |
-| allowedIssuers | List\<String>       | VC plan 사용이 허용된 발급 사업자 DID 목록 |    M    |          |
-| manager        | String             | VC plan 관리 권한을 가진 엔티티     |    M    |          |
+| option         | Option      | VC Plan options                         |    O    |          |
+| allowedIssuers | List<String>       | List of issuer DIDs allowed to use the VC plan |    M    |          |
+| manager        | String             | Entity with management authority over the VC plan    |    M    |          |
 
 ## 6.2.1.1. Option
 
 ### Description
 
-`VC plan 옵션`
+`VC plan Option`
 
 ### Declaration
 
@@ -2593,9 +2592,9 @@ data class Option(
 
 | Name         | Type            | Description                         | **M/O** | **Note** |
 |--------------|-----------------|-------------------------------------|---------|----------|
-| allowUserInit        | Boolean | 사용자에 의한 발급 개시 허용 여부                        |    M    |                          |
-| allowIssuerInit | Boolean            | 이슈어에 의한 발급 개시 허용 여부        |    M    |                                     |
-| delegatedIssuance | Boolean            | 대표 발급자에 의한 위임발급 여부        |    M    |                                     |
+| allowUserInit        | Boolean | Whether user-initiated issuance is allowed                        |    M    |                          |
+| allowIssuerInit | Boolean            | Whether issuer-initiated issuance is allowed        |    M    |                                     |
+| delegatedIssuance | Boolean            | Whether delegated issuance by a representative issuer is allowed         |    M    |                                     |
 
 <br>
 
@@ -2606,7 +2605,7 @@ data class Option(
 
 ### Description
 
-`DID 키 종류`
+`DID key types`
 
 ### Declaration
 ```kotlin
@@ -2622,7 +2621,7 @@ enum class DID_KEY_TYPE(private val value: String) {
 
 ### Description
 
-`서비스 종류`
+`Service types`
 
 ### Declaration
 ```kotlin
@@ -2638,7 +2637,7 @@ enum class DID_SERVICE_TYPE(val value: String) {
 
 ### Description
 
-`Proof 목적`
+`Proof purposes`
 
 ### Declaration
 ```kotlin
@@ -2657,7 +2656,7 @@ enum class PROOF_PURPOSE(val value: String) {
 
 ### Description
 
-`Proof 종류`
+`Proof types`
 
 ### Declaration
 
@@ -2675,7 +2674,7 @@ enum class PROOF_TYPE(val value: String) {
 
 ### Description
 
-`키의 접근 방법을 가리킨다.`
+`Indicates the method of accessing the key`
 
 ### Declaration
 
@@ -2693,7 +2692,7 @@ enum class AUTH_TYPE(val intValue: Int) {
 
 ### Description
 
-`다중종류 배열을 위한 Evidence Enumerator`
+`Evidence Enumerator for Multi-type Arrays`
 
 ### Declaration
 
@@ -2709,7 +2708,7 @@ enum class EVIDENCE_TYPE(val value: String) {
 
 ### Description
 
-`표현 종류`
+`Presence types`
 
 ### Declaration
 
@@ -2726,7 +2725,7 @@ enum class PRESENCE(val value: String) {
 
 ### Description
 
-`프로파일 종류`
+`Profile types`
 
 ### Declaration
 
@@ -2743,7 +2742,7 @@ enum class PROFILE_TYPE(val value: String) {
 
 ### Description
 
-`로고 이미지 종류`
+`Logo image types`
 
 ### Declaration
 
@@ -2760,7 +2759,7 @@ enum class LOGO_IMAGE_TYPE(val value: String) {
 
 ### Description
 
-`Claim 종류`
+`Claim types`
 
 ### Declaration
 
@@ -2778,7 +2777,7 @@ enum class CLAIM_TYPE(val value: String) {
 
 ### Description
 
-`Claim 포맷`
+`Claim formats`
 
 ### Declaration
 
@@ -2803,7 +2802,7 @@ enum class CLAIM_FORMAT(val value: String) {
 
 ### Description
 
-`값 위치`
+`Value location`
 
 ### Declaration
 
@@ -2824,7 +2823,7 @@ enum class LOCATION(val value: String) {
 
 ### Description
 
-`패딩 옵션`
+`Padding options for symmetric encryption`
 
 ### Declaration
 
@@ -2841,7 +2840,7 @@ enum class SYMMETRIC_PADDING_TYPE(val value: String) {
 
 ### Description
 
-`암호화 종류`
+`Types of symmetric encryption algorithms`
 
 ### Declaration
 
@@ -2860,7 +2859,7 @@ enum class SYMMETRIC_CIPHER_TYPE(val value: String) {
 
 ### Description
 
-`알고리즘 종류`
+`Types of algorithms`
 
 ### Declaration
 
@@ -2878,7 +2877,7 @@ enum class ALGORITHM_TYPE(val value: String) {
 
 ### Description
 
-`Credential schema 종류`
+`Types of credential schemas`
 
 ### Declaration
 
@@ -2894,7 +2893,7 @@ enum class CREDENTIAL_SCHEMA_TYPE(val value: String) {
 
 ### Description
 
-`타원 곡선 종류`
+`Types of elliptic curves`
 
 ### Declaration
 
@@ -2911,7 +2910,7 @@ enum class ELLIPTIC_CURVE_TYPE(val value: String) {
 
 ### Description
 
-`키의 접근 방법과 제출 옵션을 가리킨다. AuthType과 유사하다.`
+`Indicates access methods and submission options for keys. Similar to AuthType.`
 
 ### Declaration
 
@@ -2932,7 +2931,7 @@ enum class VERIFY_AUTH_TYPE(val intValue: Int) {
 
 ### Description
 
-`Role 타입 종류`
+`role types`
 
 ### Declaration
 
@@ -2962,7 +2961,7 @@ enum class ROLE_TYPE(val value: String) {
 
 ### Description
 
-`서버토큰목적`
+`Type of server token purposes`
 
 ### Declaration
 
@@ -2984,7 +2983,7 @@ enum class SERVER_TOKEN_PURPOSE(val intValue: Int) {
 
 ### Description
 
-`월렛토큰목적`
+`Type of wallet token purposes`
 
 ### Declaration
 
@@ -3016,7 +3015,7 @@ enum class WALLET_TOKEN_PURPOSE(val intValue: Int) {
 
 ### Description
 
-`데이터모델의 deserialize`
+`Deserializes a JSON string into a specified data model object.`
 
 ### Declaration
 
@@ -3030,7 +3029,7 @@ fun <T> deserialize(jsonString: String, clazz: Class<T>): T
 
 ### Description
 
-`AlgorithmType으로 변환 (ELLIPTIC_CURVE_TYPE / PROOF_TYPE / DID_KEY_TYPE)`
+`Converts an AlgorithmType into corresponding enum values(ELLIPTIC_CURVE_TYPE / PROOF_TYPE / DID_KEY_TYPE)`
 
 ### Declaration
 
@@ -3065,7 +3064,7 @@ fun convertFrom(type: AlgorithmType.ALGORITHM_TYPE): DID_KEY_TYPE {
 
 ### Description
 
-`AlgorithmType에서 해당 값으로 변환 (ELLIPTIC_CURVE_TYPE / PROOF_TYPE / DID_KEY_TYPE)`
+`Converts from (ELLIPTIC_CURVE_TYPE / PROOF_TYPE / DID_KEY_TYPE) to the corresponding AlgorithmType enum value.`
 
 ### Declaration
 
