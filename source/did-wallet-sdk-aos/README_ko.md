@@ -51,6 +51,5 @@ tasks.register<Copy>("exportJar") {
 ## API 규격서
 | 구분 | API 문서 Link |
 |------|----------------------------|
-
-| WalletAPI  | [Wallet SDK API](../../../docs/api/did-wallet-aos/WalletAPI_ko.md) |
-| ErrorCode      | [Error Code](../../../docs/api/did-wallet-aos/WalletError.md) |
+| WalletAPI  | [Wallet SDK API](../../docs/api/did-wallet-aos/WalletAPI_ko.md) |
+| ErrorCode      | [Error Code](../../docs/api/did-wallet-aos/WalletError.md) |
