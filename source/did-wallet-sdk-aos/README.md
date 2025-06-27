@@ -52,5 +52,5 @@ tasks.register<Copy>("exportJar") {
 ## API Specification
 | Category | API Document Link |
 |------|----------------------------|
-| WalletAPI  | [Wallet SDK API](../../../docs/api/did-wallet-aos/WalletAPI.md) |
-| ErrorCode      | [Error Code](../../../docs/api/did-wallet-aos/WalletError.md) |
+| WalletAPI  | [Wallet SDK API](../../docs/api/did-wallet-aos/WalletAPI_ko.md) |
+| ErrorCode      | [Error Code](../../docs/api/did-wallet-aos/WalletError.md) |
