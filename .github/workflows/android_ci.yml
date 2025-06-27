@@ -13,7 +13,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: source/did-client-sdk-aos
+        working-directory: source/did-wallet-sdk-aos
 
     steps:
     - uses: actions/checkout@v4
