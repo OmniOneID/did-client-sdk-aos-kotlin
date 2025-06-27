@@ -3,6 +3,10 @@ Android Client SDK
 
 Client SDK Repository에 오신 것을 환영합니다. <br> 이 Repository는 안드로이드 모바일 월렛을 개발하기 위한 SDK를 제공합니다.
 
+## 참고 사항
+![QA Status: Not Completed](https://img.shields.io/badge/QA-Not_Completed-red)
+> ⚠️ 본 Repository는 **QA 검증이 아직 되지 않은 상태**입니다. [did-release](https://github.com/OmniOneID/did-release)에는 포함되지 않았습니다.
+
 ## 폴더 구조
 ```
 did-client-sdk-aos
