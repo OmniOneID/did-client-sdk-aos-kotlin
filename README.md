@@ -1,8 +1,11 @@
 Android Client SDK
 ==
 
-Welcome to the Client SDK Repository. <br>
-This repository provides an SDK for developing an Android mobile wallet.
+Welcome to the Client SDK Repository. <br> This repository provides an SDK for developing an Android mobile wallet.
+
+## Notes
+![QA Status: Not Completed](https://img.shields.io/badge/QA-Not_Completed-red)
+> ⚠️ This repository has **not yet undergone QA verification** and is **not included** in [did-release](https://github.com/OmniOneID/did-release).
 
 ## Folder Structure
 ```
